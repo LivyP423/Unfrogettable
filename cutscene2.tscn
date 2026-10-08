@@ -1,0 +1,480 @@
+[gd_scene format=4 uid="uid://di2f8fgl0vumi"]
+
+[ext_resource type="Texture2D" uid="uid://dtiko6jlvhi7k" path="res://Sprites/tilemaps.png" id="1_oamn1"]
+[ext_resource type="Script" uid="uid://0npebhaalmah" path="res://cutscene2.gd" id="1_u60b0"]
+[ext_resource type="Texture2D" uid="uid://napst5okwxgx" path="res://Sprites/bwallwfloor.png" id="2_mfljj"]
+[ext_resource type="Texture2D" uid="uid://du5gspw70c4fn" path="res://Sprites/UI/frame.png" id="3_vpmk2"]
+[ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_2f4n6"]
+[ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_nchri"]
+[ext_resource type="Texture2D" uid="uid://b8c3x4vqtr4kk" path="res://Sprites/Oscar/OscarMain.png" id="7_ax2i4"]
+[ext_resource type="Texture2D" uid="uid://dkdlwmk1236c3" path="res://Sprites/UI/pixil-frame-0 (9).png" id="8_kgbu2"]
+[ext_resource type="Texture2D" uid="uid://bp8gg42g3aukp" path="res://Sprites/Oscar/OscarHold.png" id="8_p8elc"]
+[ext_resource type="Texture2D" uid="uid://buvo7faucrp0d" path="res://Sprites/Oscar/OscarHold1.png" id="9_23wgc"]
+[ext_resource type="Texture2D" uid="uid://bvncms4i17c7e" path="res://Sprites/UI/pixil-frame-0 (8).png" id="9_q18ei"]
+[ext_resource type="Texture2D" uid="uid://b5q8ond7y2abx" path="res://Sprites/UI/chest1.png" id="10_4yuay"]
+[ext_resource type="Texture2D" uid="uid://dmfo5kknbhfuf" path="res://Sprites/Oscar/OscarHold2.png" id="10_34y2v"]
+[ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="11_q18ei"]
+[ext_resource type="Texture2D" uid="uid://b5jxgdhutc0rq" path="res://Sprites/Oscar/OscarMain2.png" id="11_v3x7e"]
+[ext_resource type="FontFile" uid="uid://bsrqg8k2vcdiy" path="res://pentabit-sans.ttf" id="12_4yuay"]
+[ext_resource type="Texture2D" uid="uid://dnjb7rcwbplem" path="res://Sprites/Oscar/OscarMain1.png" id="12_5r1qu"]
+[ext_resource type="PackedScene" uid="uid://puvaenmafrlm" path="res://key.tscn" id="13_4yuay"]
+[ext_resource type="Texture2D" uid="uid://bu6m6mjhjtq6j" path="res://Sprites/UI/Paper.png" id="13_lxpu1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncxyc"]
+texture = ExtResource("1_oamn1")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsewc"]
+texture = ExtResource("2_mfljj")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xrivr"]
+sources/0 = SubResource("TileSetAtlasSource_ncxyc")
+sources/1 = SubResource("TileSetAtlasSource_nsewc")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ax2i4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_p8elc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_23wgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_34y2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ax2i4")
+}],
+"loop": 0,
+"name": &"grab",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_p8elc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_23wgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_34y2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ax2i4")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_v3x7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5r1qu")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13qdw"]
+radius = 27.0
+height = 88.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fitpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kgbu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q18ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4yuay")
+}],
+"loop": 1,
+"name": &"close",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4yuay")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4yuay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q18ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kgbu2")
+}],
+"loop": 0,
+"name": &"open",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_lxpu1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-661.00006, 177)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("frame/shield:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.5080256, 10.604493)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("frame/sword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7.1794453, 21.409079)]
+}
+
+[sub_resource type="Animation" id="Animation_mt0bx"]
+resource_name = "collect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("frame/shield:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4.5080256, 10.604493), Vector2(29.385637, 71.83045)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("frame/sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7.1794453, 21.409079), Vector2(-12.856223, 73.43112)]
+}
+
+[sub_resource type="Animation" id="Animation_gg75r"]
+resource_name = "exit"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("frame/shield:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(29.385635, 71.83045), Vector2(-135.74164, 71.8861)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("frame/sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-12.856222, 73.43112), Vector2(-177.98347, 73.48678)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Oscar:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(216, 177), Vector2(-773, 177.27814)]
+}
+
+[sub_resource type="Animation" id="Animation_wbfpa"]
+resource_name = "new_animation"
+length = 1.6666666
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 1.5666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-661.00006, 177), Vector2(216, 177)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mt0bx"]
+_data = {
+&"RESET": SubResource("Animation_lxpu1"),
+&"collect": SubResource("Animation_mt0bx"),
+&"exit": SubResource("Animation_gg75r"),
+&"new_animation": SubResource("Animation_wbfpa")
+}
+
+[node name="cutscene2" type="Node" unique_id=714830367]
+script = ExtResource("1_u60b0")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=841984116]
+position = Vector2(-621, -435)
+scale = Vector2(6.3600016, 8)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQACAAAAAAADAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQABAAAAAAACAAEAAQACAAAAAAADAAEAAQAAAAAAAAAEAAAAAQABAAAAAAAFAAAAAQACAAAAAAAGAAAAAQAAAAAAAAAEAAEAAQABAAAAAAAFAAEAAQACAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQABAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQABAAAAAAAHAAAAAQABAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQABAAAAAAAAAAIAAQAAAAAAAAABAAIAAQABAAAAAAACAAIAAQACAAAAAAADAAIAAQADAAAAAAAAAAMAAQAAAAAAAAABAAMAAQABAAAAAAACAAMAAQACAAAAAAADAAMAAQADAAAAAAAAAAQAAQAAAAAAAAABAAQAAQABAAAAAAACAAQAAQACAAAAAAADAAQAAQADAAAAAAAEAAQAAQAAAAAAAAAFAAQAAQABAAAAAAAGAAQAAQACAAAAAAAHAAQAAQADAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQABAAAAAAAGAAMAAQACAAAAAAAHAAMAAQADAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQABAAAAAAAGAAIAAQACAAAAAAAHAAIAAQADAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQABAAAAAAAKAAIAAQACAAAAAAALAAIAAQADAAAAAAAKAAAAAQACAAAAAAALAAAAAQADAAAAAAAKAAEAAQACAAAAAAALAAEAAQADAAAAAAAIAAMAAQAAAAAAAAAJAAMAAQABAAAAAAAKAAMAAQACAAAAAAALAAMAAQADAAAAAAAIAAQAAQAAAAAAAAAJAAQAAQABAAAAAAAKAAQAAQACAAAAAAALAAQAAQADAAAAAAAAAAUAAQAAAAEAAAABAAUAAQABAAEAAAACAAUAAQACAAEAAAADAAUAAQADAAEAAAAEAAUAAQAAAAEAAAAFAAUAAQABAAEAAAAGAAUAAQACAAEAAAAHAAUAAQADAAEAAAAIAAUAAQAAAAEAAAAJAAUAAQABAAEAAAAKAAUAAQACAAEAAAALAAUAAQADAAEAAAA=")
+tile_set = SubResource("TileSet_xrivr")
+
+[node name="frame" type="TextureRect" parent="." unique_id=516195757]
+offset_left = 51.000008
+offset_top = -230.99998
+offset_right = 91.000015
+offset_bottom = -190.99998
+scale = Vector2(5.98932, 4.99788)
+texture = ExtResource("3_vpmk2")
+
+[node name="shield" type="TextureRect" parent="frame" unique_id=428863559]
+z_index = 2
+layout_mode = 0
+offset_left = -4.5080256
+offset_top = 10.604493
+offset_right = 35.491974
+offset_bottom = 50.604477
+scale = Vector2(0.82247967, 0.86209226)
+texture = ExtResource("4_2f4n6")
+
+[node name="sword" type="TextureRect" parent="frame" unique_id=1056926259]
+z_index = 3
+layout_mode = 0
+offset_left = 7.1794453
+offset_top = 21.409079
+offset_right = 47.179443
+offset_bottom = 61.409058
+rotation = -0.65363085
+scale = Vector2(0.6850611, 0.7383634)
+texture = ExtResource("5_nchri")
+
+[node name="Oscar" type="CharacterBody2D" parent="." unique_id=1827571012]
+z_index = 1
+position = Vector2(-661.00006, 177)
+scale = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Oscar" unique_id=1001032267]
+texture_filter = 1
+position = Vector2(-1.9073486e-06, 3.000002)
+scale = Vector2(2.33, 2.33)
+sprite_frames = SubResource("SpriteFrames_xrivr")
+animation = &"grab"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oscar" unique_id=375633655]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_13qdw")
+
+[node name="chest" type="AnimatedSprite2D" parent="." unique_id=1707725071]
+texture_filter = 1
+position = Vector2(372.99997, 186)
+scale = Vector2(7.0774713, 7.1292014)
+sprite_frames = SubResource("SpriteFrames_fitpj")
+animation = &"open"
+frame = 2
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=523368216]
+libraries/ = SubResource("AnimationLibrary_mt0bx")
+
+[node name="GUI" type="Control" parent="." unique_id=595132607]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="GUI" unique_id=337751856]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = -322.00003
+offset_right = -290.0
+offset_bottom = -282.00003
+grow_horizontal = 2
+scale = Vector2(11.119999, 4.12)
+texture = ExtResource("11_q18ei")
+
+[node name="Label" type="Label" parent="GUI/TextureRect" unique_id=1116687220]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.6762595
+offset_top = 8.495153
+offset_right = 114.67626
+offset_bottom = 69.49515
+scale = Vector2(0.3669061, 0.6990289)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_4yuay")
+theme_override_font_sizes/font_size = 8
+text = "What? the gems in my key
+are gone, it won't even work 
+now!"
+uppercase = true
+
+[node name="Paper" type="TextureRect" parent="GUI" unique_id=1383072477]
+texture_filter = 1
+layout_mode = 0
+offset_left = -267.0
+offset_top = -292.0
+offset_right = -203.0
+offset_bottom = -228.0
+scale = Vector2(8.120001, 9.4)
+texture = ExtResource("13_lxpu1")
+
+[node name="Label3" type="Label" parent="GUI/Paper" unique_id=450373830]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.093596
+offset_top = 4.999999
+offset_right = 110.0936
+offset_bottom = 92.0
+scale = Vector2(0.5575536, 0.64077646)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_4yuay")
+theme_override_font_sizes/font_size = 8
+text = "Oh Oscar,
+did you really think
+it would be that
+easy? Luckily for us,
+you forgot to lock 
+your chest too!!
+- the flies,
+again"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="key" parent="." unique_id=410463311 instance=ExtResource("13_4yuay")]
+position = Vector2(376, 178.00002)
+rotation = 1.0269437
+scale = Vector2(4.4065146, 3.7974598)

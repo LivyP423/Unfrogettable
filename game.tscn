@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://c6qrjwvcg7jd5"]
+
+[ext_resource type="Script" uid="uid://py0dorvdldjw" path="res://game.gd" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://dg0l5vjf2uedf" path="res://oscar.tscn" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="4_7jktm"]
+[ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_hve3p"]
+[ext_resource type="Script" uid="uid://cj0dvvwjkt8rn" path="res://flyguypink.gd" id="4_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://0glsmqww0vbg" path="res://Sprites/FlyGuy/FlyMain.png" id="5_vef74"]
+[ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="7_hve3p"]
+[ext_resource type="FontFile" uid="uid://bsrqg8k2vcdiy" path="res://pentabit-sans.ttf" id="8_mfdv2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vef74")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vfwuq"]
+radius = 27.0
+height = 78.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrivr"]
+radius = 119.85408
+
+[node name="game" type="Node2D" unique_id=829319984]
+script = ExtResource("1_7jktm")
+
+[node name="world" parent="." unique_id=1747902996 instance=ExtResource("1_e2o6t")]
+
+[node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("2_feb5d")]
+
+[node name="Camera2D" type="Camera2D" parent="Oscar" unique_id=1585518271]
+
+[node name="shield" type="Sprite2D" parent="Oscar" unique_id=1616227757]
+position = Vector2(-26, 5)
+scale = Vector2(4.5432253, 4.64292)
+texture = ExtResource("4_hve3p")
+
+[node name="sword" type="Sprite2D" parent="Oscar" unique_id=1034815206]
+position = Vector2(32, -3.0000014)
+rotation = 0.5074392
+scale = Vector2(2.8420389, 2.8610032)
+texture = ExtResource("5_mfdv2")
+
+[node name="flyguypink" type="CharacterBody2D" parent="." unique_id=589937618]
+position = Vector2(429, 219)
+script = ExtResource("4_j5wjh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flyguypink" unique_id=1355495461]
+scale = Vector2(2.3, 2.3)
+sprite_frames = SubResource("SpriteFrames_xrivr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flyguypink" unique_id=555350516]
+shape = SubResource("CapsuleShape2D_vfwuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="flyguypink" unique_id=1063187219]
+position = Vector2(17.999989, 8.000003)
+scale = Vector2(5.641437, 5.9908795)
+texture = ExtResource("4_7jktm")
+region_enabled = true
+region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
+
+[node name="Area2D" type="Area2D" parent="flyguypink" unique_id=1167201916]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flyguypink/Area2D" unique_id=864554457]
+shape = SubResource("CircleShape2D_xrivr")
+debug_color = Color(0.8755744, 0.34478006, 5.7756904e-07, 0.41960785)
+
+[node name="GUI" type="Control" parent="." unique_id=1156663988]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="GUI" unique_id=309452174]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = -322.00003
+offset_right = -290.0
+offset_bottom = -282.00003
+grow_horizontal = 2
+scale = Vector2(11.119999, 4.12)
+texture = ExtResource("7_hve3p")
+
+[node name="Label" type="Label" parent="GUI/TextureRect" unique_id=883681826]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.6762595
+offset_top = 8.495153
+offset_right = 114.67626
+offset_bottom = 69.49515
+scale = Vector2(0.3669061, 0.6990289)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_mfdv2")
+theme_override_font_sizes/font_size = 8
+text = "Uh oh, it's Knight Oscar! Stay
+away from the pink stone!"
+uppercase = true
+
+[connection signal="body_entered" from="flyguypink/Area2D" to="." method="_on_area_2d_body_entered"]

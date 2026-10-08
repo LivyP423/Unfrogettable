@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dg0l5vjf2uedf"]
+
+[ext_resource type="Script" uid="uid://b1yitw3lph4k2" path="res://oscar.gd" id="1_vfwuq"]
+[ext_resource type="Texture2D" uid="uid://b8c3x4vqtr4kk" path="res://Sprites/Oscar/OscarMain.png" id="2_phadm"]
+[ext_resource type="Texture2D" uid="uid://bp8gg42g3aukp" path="res://Sprites/Oscar/OscarHold.png" id="3_1vusm"]
+[ext_resource type="Texture2D" uid="uid://buvo7faucrp0d" path="res://Sprites/Oscar/OscarHold1.png" id="4_xdf6n"]
+[ext_resource type="Texture2D" uid="uid://dmfo5kknbhfuf" path="res://Sprites/Oscar/OscarHold2.png" id="5_4xlgo"]
+[ext_resource type="Texture2D" uid="uid://b5jxgdhutc0rq" path="res://Sprites/Oscar/OscarMain2.png" id="6_x4sxv"]
+[ext_resource type="Texture2D" uid="uid://dnjb7rcwbplem" path="res://Sprites/Oscar/OscarMain1.png" id="7_khpe3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_phadm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1vusm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xdf6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4xlgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_phadm")
+}],
+"loop": 0,
+"name": &"grab",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1vusm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xdf6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4xlgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_phadm")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x4sxv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_khpe3")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13qdw"]
+radius = 27.0
+height = 88.0
+
+[node name="Oscar" type="CharacterBody2D" unique_id=1827571012]
+script = ExtResource("1_vfwuq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1001032267]
+texture_filter = 1
+position = Vector2(-1.9073486e-06, 3.000002)
+scale = Vector2(2.33, 2.33)
+sprite_frames = SubResource("SpriteFrames_xrivr")
+animation = &"grab"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375633655]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_13qdw")

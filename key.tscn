@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://puvaenmafrlm"]
+
+[ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="1_up4cr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0yg6"]
+atlas = ExtResource("1_up4cr")
+region = Rect2(0, 29, 19, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krfvd"]
+atlas = ExtResource("1_up4cr")
+region = Rect2(0, 0, 19, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8y70"]
+atlas = ExtResource("1_up4cr")
+region = Rect2(38, 0, 19, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4l57"]
+atlas = ExtResource("1_up4cr")
+region = Rect2(19, 0, 19, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ltq3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0yg6")
+}],
+"loop": 1,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krfvd")
+}],
+"loop": 1,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8y70")
+}],
+"loop": 1,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4l57")
+}],
+"loop": 1,
+"name": &"pink",
+"speed": 5.0
+}]
+
+[node name="key" type="AnimatedSprite2D" unique_id=410463311]
+sprite_frames = SubResource("SpriteFrames_7ltq3")
+animation = &"empty"
