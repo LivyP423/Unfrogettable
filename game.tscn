@@ -27,7 +27,7 @@ radius = 27.0
 height = 78.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrivr"]
-radius = 119.85408
+radius = 61.741398
 
 [node name="game" type="Node2D" unique_id=829319984]
 script = ExtResource("1_7jktm")
@@ -97,15 +97,16 @@ texture = ExtResource("7_hve3p")
 texture_filter = 1
 layout_mode = 0
 offset_left = 4.6762595
-offset_top = 8.495153
-offset_right = 114.67626
-offset_bottom = 69.49515
+offset_top = 12.864086
+offset_right = 143.67625
+offset_bottom = 73.864075
 scale = Vector2(0.3669061, 0.6990289)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.6067709, 0.109029144, 0.6067709, 1)
 theme_override_fonts/font = ExtResource("8_mfdv2")
 theme_override_font_sizes/font_size = 8
 text = "Uh oh, it's Knight Oscar! Stay
-away from the pink stone!"
+away from my pink stone!"
 uppercase = true
 
-[connection signal="body_entered" from="flyguypink/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_exited"]

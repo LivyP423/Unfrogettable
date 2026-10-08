@@ -61,7 +61,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13qdw"]
@@ -72,11 +72,14 @@ height = 88.0
 script = ExtResource("1_vfwuq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1001032267]
+light_mask = 2
+visibility_layer = 5
 texture_filter = 1
 position = Vector2(-1.9073486e-06, 3.000002)
 scale = Vector2(2.33, 2.33)
 sprite_frames = SubResource("SpriteFrames_xrivr")
-animation = &"grab"
+animation = &"hit"
+frame_progress = 0.41933522
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375633655]
 position = Vector2(-1, 0)
