@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://biohgw6xefbdm"]
 
 [ext_resource type="Script" uid="uid://d2gvwk3uvvkgf" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bko0w6yb7gv7t" path="res://card.tscn" id="2_0xm2m"]
 
 [node name="CardGame" type="Control" unique_id=1656682532]
+z_index = 4
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -17,10 +17,9 @@ offset_bottom = -285.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ig7tw")
-card_scene = ExtResource("2_0xm2m")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1692612520]
-z_index = 2
+z_index = 5
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

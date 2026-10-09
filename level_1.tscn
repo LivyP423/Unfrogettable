@@ -1,3 +1,73 @@
 [gd_scene format=3 uid="uid://dfvpfdb1lahr2"]
 
-[node name="Level1" type="Node2D" unique_id=379701018]
+[ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_rka8t"]
+[ext_resource type="PackedScene" uid="uid://d1wprabv1lgn5" path="res://flyguy.tscn" id="2_5hph3"]
+[ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="2_bjebc"]
+[ext_resource type="PackedScene" uid="uid://biohgw6xefbdm" path="res://main.tscn" id="3_5rr72"]
+[ext_resource type="PackedScene" uid="uid://dg0l5vjf2uedf" path="res://oscar.tscn" id="3_j7kpp"]
+[ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_bjebc"]
+[ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_5rr72"]
+[ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="8_1pe0h"]
+
+[node name="Node2D" type="Node2D" unique_id=322872690]
+
+[node name="world" parent="." unique_id=1747902996 instance=ExtResource("1_rka8t")]
+
+[node name="Control" type="Control" parent="." unique_id=357640139]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 368.0
+offset_top = 78.0
+offset_right = 408.0
+offset_bottom = 118.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control" unique_id=819638779]
+layer = 2
+
+[node name="CardGame" parent="Control/CanvasLayer" unique_id=1656682532 instance=ExtResource("3_5rr72")]
+z_index = 3
+offset_left = 364.0
+offset_top = 168.0
+offset_right = 404.0
+offset_bottom = 208.0
+scale = Vector2(0.8543326, 0.81678843)
+card_scene = null
+
+[node name="GameBoard" type="TextureRect" parent="Control" unique_id=42123758]
+z_index = 2
+layout_mode = 0
+offset_left = -38.0
+offset_top = 133.0
+offset_right = 22.0
+offset_bottom = 173.0
+scale = Vector2(8.503989, 10.977682)
+texture = ExtResource("2_bjebc")
+
+[node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("3_j7kpp")]
+position = Vector2(359, 109)
+scale = Vector2(2.5359313, 2.1980472)
+
+[node name="shield" type="Sprite2D" parent="Oscar" unique_id=1912177313]
+position = Vector2(-26, 5)
+scale = Vector2(4.5432253, 4.64292)
+texture = ExtResource("4_bjebc")
+
+[node name="sword" type="Sprite2D" parent="Oscar" unique_id=939908521]
+position = Vector2(32, -3.0000014)
+rotation = 0.5074392
+scale = Vector2(2.8420389, 2.8610032)
+texture = ExtResource("5_5rr72")
+
+[node name="Gemstone" type="Sprite2D" parent="." unique_id=1147768559]
+position = Vector2(949, 213)
+scale = Vector2(10.507873, 9.880589)
+texture = ExtResource("8_1pe0h")
+region_enabled = true
+region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1299225685]
+position = Vector2(582, 322)
+
+[node name="flyguy" parent="." unique_id=589937618 instance=ExtResource("2_5hph3")]
+position = Vector2(812.99994, 120.99999)
+scale = Vector2(2.207388, 1.9312882)

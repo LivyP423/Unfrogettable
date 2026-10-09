@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Unfroggettable (Copy)"
-run/main_scene="uid://c6qrjwvcg7jd5"
+run/main_scene="uid://dfvpfdb1lahr2"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,8 @@ Game="*uid://dxlsdowg60rg7"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
 [input]

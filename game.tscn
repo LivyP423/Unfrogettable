@@ -38,6 +38,41 @@ script = ExtResource("1_7jktm")
 
 [node name="Camera2D" type="Camera2D" parent="Oscar" unique_id=1585518271]
 
+[node name="GUI" type="Control" parent="Oscar/Camera2D" unique_id=1156663988]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Oscar/Camera2D/GUI" unique_id=309452174]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = -322.00003
+offset_right = -290.0
+offset_bottom = -282.00003
+grow_horizontal = 2
+scale = Vector2(11.119999, 4.12)
+texture = ExtResource("7_hve3p")
+
+[node name="Label" type="Label" parent="Oscar/Camera2D/GUI/TextureRect" unique_id=883681826]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.6762595
+offset_top = 12.864086
+offset_right = 143.67625
+offset_bottom = 73.864075
+scale = Vector2(0.3669061, 0.6990289)
+theme_override_colors/font_color = Color(0.60784316, 0.10980392, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("8_mfdv2")
+theme_override_font_sizes/font_size = 8
+text = "Uh oh, it's Knight Oscar! Stay
+away from my pink stone!"
+uppercase = true
+
 [node name="shield" type="Sprite2D" parent="Oscar" unique_id=1616227757]
 position = Vector2(-26, 5)
 scale = Vector2(4.5432253, 4.64292)
@@ -72,41 +107,6 @@ region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="flyguypink/Area2D" unique_id=864554457]
 shape = SubResource("CircleShape2D_xrivr")
 debug_color = Color(0.8755744, 0.34478006, 5.7756904e-07, 0.41960785)
-
-[node name="GUI" type="Control" parent="." unique_id=1156663988]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="GUI" unique_id=309452174]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = -322.00003
-offset_right = -290.0
-offset_bottom = -282.00003
-grow_horizontal = 2
-scale = Vector2(11.119999, 4.12)
-texture = ExtResource("7_hve3p")
-
-[node name="Label" type="Label" parent="GUI/TextureRect" unique_id=883681826]
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.6762595
-offset_top = 12.864086
-offset_right = 143.67625
-offset_bottom = 73.864075
-scale = Vector2(0.3669061, 0.6990289)
-theme_override_colors/font_color = Color(0.60784316, 0.10980392, 0.60784316, 1)
-theme_override_fonts/font = ExtResource("8_mfdv2")
-theme_override_font_sizes/font_size = 8
-text = "Uh oh, it's Knight Oscar! Stay
-away from my pink stone!"
-uppercase = true
 
 [connection signal="body_entered" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_exited"]

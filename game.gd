@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var oscar = $Oscar
 @onready var flyguy = $flyguypink
-@onready var box = $GUI/TextureRect
-@onready var label = $GUI/TextureRect/Label
+@onready var box = $Oscar/Camera2D/GUI/TextureRect
+@onready var label = $Oscar/Camera2D/GUI/TextureRect/Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	box.hide()
