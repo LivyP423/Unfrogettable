@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*uid://dxlsdowg60rg7"
+gamemaster="*uid://bst5un318wh1n"
 
 [display]
 

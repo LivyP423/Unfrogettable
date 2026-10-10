@@ -10,8 +10,10 @@ extends Node
 @onready var paper = $GUI/Paper
 @onready var oscar = $Oscar
 
+var cutscene1Finished = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	cutscene1Finished = false
 	oscar.position.x = 494
 	oscar.position.y = 213
 	paper.hide()
@@ -35,7 +37,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _on_animation_finished(anim_name: String) -> void:
+func _on_animation_finished(_anim_name: String) -> void:
 	oscarsanimations.stop()
 	dialoguebox.show()
 	label2.show()
@@ -50,3 +52,5 @@ func _on_animation_finished(anim_name: String) -> void:
 	label4.show()
 	await get_tree().create_timer(1).timeout
 	animationplayer2.play("exitscene")
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_file("res://cutscene2.tscn")

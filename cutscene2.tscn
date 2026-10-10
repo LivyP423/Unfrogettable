@@ -478,3 +478,5 @@ uppercase = true
 position = Vector2(376, 178.00002)
 rotation = 1.0269437
 scale = Vector2(4.4065146, 3.7974598)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=870748173]

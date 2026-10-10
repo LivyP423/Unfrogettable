@@ -1,17 +1,26 @@
 [gd_scene format=3 uid="uid://dfvpfdb1lahr2"]
 
 [ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_rka8t"]
+[ext_resource type="Script" uid="uid://bst5un318wh1n" path="res://gamemaster.gd" id="1_ubhxj"]
 [ext_resource type="PackedScene" uid="uid://d1wprabv1lgn5" path="res://flyguy.tscn" id="2_5hph3"]
 [ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="2_bjebc"]
 [ext_resource type="PackedScene" uid="uid://biohgw6xefbdm" path="res://main.tscn" id="3_5rr72"]
 [ext_resource type="PackedScene" uid="uid://dg0l5vjf2uedf" path="res://oscar.tscn" id="3_j7kpp"]
 [ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_bjebc"]
 [ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_5rr72"]
+[ext_resource type="Script" uid="uid://dk1f65dxut1a4" path="res://battleOscar.gd" id="5_gyffv"]
 [ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="8_1pe0h"]
+[ext_resource type="Texture2D" uid="uid://bu8bsodm40k7o" path="res://Sprites/empty.png" id="8_27bay"]
+[ext_resource type="Texture2D" uid="uid://bi3i83ujibk3e" path="res://Sprites/human.png" id="9_sof0w"]
+[ext_resource type="Texture2D" uid="uid://b5t3a5mrvcjsx" path="res://Sprites/zombie.png" id="12_ggavl"]
+[ext_resource type="Script" uid="uid://dge4igmbwk46" path="res://battleFlyguy.gd" id="12_sof0w"]
+[ext_resource type="Texture2D" uid="uid://dwsvxlt47tk7" path="res://Sprites/turnToken.png" id="14_ggavl"]
 
-[node name="Node2D" type="Node2D" unique_id=322872690]
+[node name="Level1" type="Node2D" unique_id=322872690]
+script = ExtResource("1_ubhxj")
 
 [node name="world" parent="." unique_id=1747902996 instance=ExtResource("1_rka8t")]
+script = null
 
 [node name="Control" type="Control" parent="." unique_id=357640139]
 layout_mode = 3
@@ -26,12 +35,11 @@ layer = 2
 
 [node name="CardGame" parent="Control/CanvasLayer" unique_id=1656682532 instance=ExtResource("3_5rr72")]
 z_index = 3
-offset_left = 364.0
-offset_top = 168.0
-offset_right = 404.0
-offset_bottom = 208.0
-scale = Vector2(0.8543326, 0.81678843)
-card_scene = null
+offset_left = -17.999939
+offset_top = 92.0
+offset_right = 22.000061
+offset_bottom = 132.0
+scale = Vector2(0.92646146, 0.840452)
 
 [node name="GameBoard" type="TextureRect" parent="Control" unique_id=42123758]
 z_index = 2
@@ -46,11 +54,23 @@ texture = ExtResource("2_bjebc")
 [node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("3_j7kpp")]
 position = Vector2(359, 109)
 scale = Vector2(2.5359313, 2.1980472)
+script = ExtResource("5_gyffv")
 
 [node name="shield" type="Sprite2D" parent="Oscar" unique_id=1912177313]
 position = Vector2(-26, 5)
 scale = Vector2(4.5432253, 4.64292)
 texture = ExtResource("4_bjebc")
+
+[node name="heart" type="TextureProgressBar" parent="Oscar" unique_id=272128451]
+offset_left = -117.90542
+offset_top = -29.116756
+offset_right = -77.90539
+offset_bottom = 10.883244
+scale = Vector2(5.623471, 5.467647)
+max_value = 3.0
+fill_mode = 1
+texture_under = ExtResource("8_27bay")
+texture_progress = ExtResource("9_sof0w")
 
 [node name="sword" type="Sprite2D" parent="Oscar" unique_id=939908521]
 position = Vector2(32, -3.0000014)
@@ -59,6 +79,7 @@ scale = Vector2(2.8420389, 2.8610032)
 texture = ExtResource("5_5rr72")
 
 [node name="Gemstone" type="Sprite2D" parent="." unique_id=1147768559]
+visible = false
 position = Vector2(949, 213)
 scale = Vector2(10.507873, 9.880589)
 texture = ExtResource("8_1pe0h")
@@ -71,3 +92,20 @@ position = Vector2(582, 322)
 [node name="flyguy" parent="." unique_id=589937618 instance=ExtResource("2_5hph3")]
 position = Vector2(812.99994, 120.99999)
 scale = Vector2(2.207388, 1.9312882)
+script = ExtResource("12_sof0w")
+
+[node name="heartFly" type="TextureProgressBar" parent="flyguy" unique_id=1667987126]
+offset_left = 49.832684
+offset_top = -39.351967
+offset_right = 89.8327
+offset_bottom = 0.64803314
+scale = Vector2(5.597775, 5.764582)
+max_value = 3.0
+texture_under = ExtResource("8_27bay")
+texture_progress = ExtResource("12_ggavl")
+
+[node name="turnToken" type="Sprite2D" parent="." unique_id=811246306]
+position = Vector2(184, 372)
+rotation = -0.29189542
+scale = Vector2(3.8368113, 3.338298)
+texture = ExtResource("14_ggavl")

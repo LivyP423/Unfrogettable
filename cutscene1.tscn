@@ -147,7 +147,7 @@ _data = {
 &"exitscene": SubResource("Animation_8tvh5")
 }
 
-[node name="Node" type="Node" unique_id=913475722]
+[node name="cutscene1" type="Node" unique_id=913475722]
 script = ExtResource("1_7vpm8")
 
 [node name="Game" parent="." unique_id=1747902996 instance=ExtResource("1_b8r0m")]
@@ -273,3 +273,5 @@ uppercase = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1854030022]
 libraries/ = SubResource("AnimationLibrary_d8i1p")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1989067801]
