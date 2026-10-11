@@ -8,6 +8,7 @@ var level: int = 1
 @onready var oscarHeart = _find_heart_node(["../Oscar/heart", "Oscar/heart"])
 @onready var flyHeart = _find_heart_node(["../flyguy/heartFly", "flyguy/heartFly"])
 
+
 func _ready() -> void:
 	healthDisplay()
 

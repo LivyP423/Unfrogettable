@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@onready var heart = $heart
+@onready var heart = $"../heart"
 var health = gamemaster.oscarHealth
 
 

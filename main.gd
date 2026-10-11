@@ -11,6 +11,9 @@ enum GameState {
 
 @onready var card_grid: GridContainer = $GridContainer
 @onready var turnToken = $"../../../turnToken"
+@onready var oscarAnim = $"../../../OscarAnim"
+@onready var oscarSpriteAnim = $AnimatedSprite2D
+
 var card_deck: Array = [
 	"butterfly", "butterfly", "goldfish", "goldfish", "mockingbird", "mockingbird",
 	"worm", "worm", "hummingbird", "hummingbird", "ladybug", "ladybug",
@@ -21,20 +24,29 @@ var matches: int = 0
 var current_state: GameState = GameState.STARTUP
 var last_actor: GameState = GameState.PLAYER_TURN
 
+# External reference to the main Game Master node managing health/stats
+var gamemaster: Node = null
+
 
 func _ready() -> void:
 	randomize()
 	card_deck.shuffle()
-	turnToken.hide()
-	turnToken.scale.x = 3.8
-	turnToken.scale.y = 3.3
-	turnToken.position.y = 372.0
+	
+	if is_instance_valid(turnToken):
+		turnToken.hide()
+		turnToken.scale.x = 3.8
+		turnToken.scale.y = 3.3
+		turnToken.position.y = 372.0
+		
 	if card_grid:
 		card_grid.add_theme_constant_override("h_separation", 12)
 		card_grid.add_theme_constant_override("v_separation", 12)
 		
 	await print_board()
-	turnToken.show()
+	
+	if is_instance_valid(turnToken):
+		turnToken.show()
+		
 	change_state(GameState.PLAYER_TURN)
 
 
@@ -44,20 +56,22 @@ func change_state(new_state: GameState) -> void:
 	match current_state:
 		GameState.PLAYER_TURN:
 			print("--- Player's Turn ---")
-			turnToken.position.x = 184.0
-			turnToken.rotation_degrees = -16.7
+			if is_instance_valid(turnToken):
+				turnToken.position.x = 184.0
+				turnToken.rotation_degrees = -16.7
 			
 		GameState.AI_TURN:
 			print("--- AI's Turn ---")
-			turnToken.position.x = 967.0
-			turnToken.rotation_degrees = 16.7
+			if is_instance_valid(turnToken):
+				turnToken.position.x = 967.0
+				turnToken.rotation_degrees = 16.7
 			run_ai_turn()
 			
 		GameState.CHECKING_MATCH:
 			check_hand_match()
 			
 		GameState.GAME_OVER:
-			print("Game Over!")
+			print("--- Game Over ---")
 
 
 func print_board() -> void:
@@ -72,7 +86,8 @@ func print_board() -> void:
 		
 		var card = Card.new()
 		card.id = item
-		card.gamemaster = self
+		# Pass the outer gamemaster node (or self if null) to card instances
+		card.gamemaster = gamemaster if is_instance_valid(gamemaster) else self
 		card.face_down = false
 		
 		card_grid.add_child(card)
@@ -93,7 +108,7 @@ func my_turn(card) -> void:
 	if current_state != GameState.PLAYER_TURN:
 		return
 		
-	if card.matched or not card.face_down or card in current_hand or current_hand.size() >= 2:
+	if not is_instance_valid(card) or card.matched or not card.face_down or card in current_hand or current_hand.size() >= 2:
 		return
 		
 	flip_card(card)
@@ -114,17 +129,24 @@ func run_ai_turn() -> void:
 		change_state(GameState.GAME_OVER)
 		return
 
-	# Shuffle and flip the cards outside of the guard clause
+	# Shuffle available cards and make the first pick
 	available_cards.shuffle()
 	flip_card(available_cards[0])
 	
 	await get_tree().create_timer(0.8).timeout
-	flip_card(available_cards[1])
 	
+	# Make the second pick
+	if available_cards.size() > 1 and is_instance_valid(available_cards[1]):
+		flip_card(available_cards[1])
+		
 	await get_tree().create_timer(0.5).timeout
 	change_state(GameState.CHECKING_MATCH)
 
+
 func flip_card(card) -> void:
+	if not is_instance_valid(card):
+		return
+		
 	last_actor = current_state
 	card.play(card.id)
 	card.face_down = false
@@ -145,14 +167,29 @@ func check_hand_match() -> void:
 	if is_match:
 		matches += 1
 		
-		# Safely modify the gamemaster health variables directly
+		# Modify health variables on the Game Master if assigned
 		if is_instance_valid(gamemaster):
 			if who_just_played == GameState.PLAYER_TURN:
-				gamemaster.flyHealth -= 1
-				print("Player hit! AI Health: ", gamemaster.flyHealth)
+				if "flyHealth" in gamemaster:
+					gamemaster.flyHealth -= 1
+					print("Player hit! AI Health: ", gamemaster.flyHealth)
 			else:
-				gamemaster.oscarHealth -= 1
-				print("AI hit! Player Health: ", gamemaster.oscarHealth)
+				if "oscarHealth" in gamemaster:
+					gamemaster.oscarHealth -= 1
+					print("AI hit! Player Health: ", gamemaster.oscarHealth)
+				
+				# Play hit sequence animations safely
+				if is_instance_valid(oscarAnim):
+					oscarAnim.play("hit")
+				await get_tree().create_timer(0.75).timeout
+				
+				if is_instance_valid(oscarSpriteAnim):
+					oscarSpriteAnim.play("hit")
+				await get_tree().create_timer(0.25).timeout
+				
+				if is_instance_valid(oscarAnim):
+					oscarAnim.play("return")
+				await get_tree().create_timer(1.0).timeout
 		else:
 			print("Warning: gamemaster reference is null!")
 			
@@ -169,15 +206,15 @@ func check_hand_match() -> void:
 			
 	current_hand.clear()
 
-	# Check for game over condition
-	var player_hp = gamemaster.oscarHealth if is_instance_valid(gamemaster) else 1
-	var ai_hp = gamemaster.flyHealth if is_instance_valid(gamemaster) else 1
+	# Game over conditions check
+	var player_hp: int = gamemaster.oscarHealth if (is_instance_valid(gamemaster) and "oscarHealth" in gamemaster) else 1
+	var ai_hp: int = gamemaster.flyHealth if (is_instance_valid(gamemaster) and "flyHealth" in gamemaster) else 1
 
 	if matches >= card_deck.size() / 2.0 or player_hp <= 0 or ai_hp <= 0:
 		change_state(GameState.GAME_OVER)
 		return
 
-	# Strictly alternate turns
+	# Transition turn
 	if who_just_played == GameState.PLAYER_TURN:
 		change_state(GameState.AI_TURN)
 	else:

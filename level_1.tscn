@@ -15,6 +15,60 @@
 [ext_resource type="Script" uid="uid://dge4igmbwk46" path="res://battleFlyguy.gd" id="12_sof0w"]
 [ext_resource type="Texture2D" uid="uid://dwsvxlt47tk7" path="res://Sprites/turnToken.png" id="14_ggavl"]
 
+[sub_resource type="Animation" id="Animation_ggavl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(359, 109)]
+}
+
+[sub_resource type="Animation" id="Animation_ubhxj"]
+resource_name = "hit"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(359, 109), Vector2(665, 109)]
+}
+
+[sub_resource type="Animation" id="Animation_65or1"]
+resource_name = "return"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(664, 109), Vector2(359, 109)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhbbi"]
+_data = {
+&"RESET": SubResource("Animation_ggavl"),
+&"hit": SubResource("Animation_ubhxj"),
+&"return": SubResource("Animation_65or1")
+}
+
 [node name="Level1" type="Node2D" unique_id=322872690]
 
 [node name="world" parent="." unique_id=1747902996 instance=ExtResource("1_rka8t")]
@@ -59,22 +113,22 @@ position = Vector2(-26, 5)
 scale = Vector2(4.5432253, 4.64292)
 texture = ExtResource("4_bjebc")
 
-[node name="heart" type="TextureProgressBar" parent="Oscar" unique_id=272128451]
-offset_left = -117.90542
-offset_top = -29.116756
-offset_right = -77.90539
-offset_bottom = 10.883244
-scale = Vector2(5.623471, 5.467647)
-max_value = 3.0
-fill_mode = 1
-texture_under = ExtResource("8_27bay")
-texture_progress = ExtResource("9_sof0w")
-
 [node name="sword" type="Sprite2D" parent="Oscar" unique_id=939908521]
 position = Vector2(32, -3.0000014)
 rotation = 0.5074392
 scale = Vector2(2.8420389, 2.8610032)
 texture = ExtResource("5_5rr72")
+
+[node name="heart" type="TextureProgressBar" parent="." unique_id=272128451]
+offset_left = 43.0
+offset_top = 49.0
+offset_right = 83.00003
+offset_bottom = 89.0
+scale = Vector2(12.13113, 10.780744)
+max_value = 3.0
+fill_mode = 1
+texture_under = ExtResource("8_27bay")
+texture_progress = ExtResource("9_sof0w")
 
 [node name="Gemstone" type="Sprite2D" parent="." unique_id=1147768559]
 visible = false
@@ -92,12 +146,12 @@ position = Vector2(812.99994, 120.99999)
 scale = Vector2(2.207388, 1.9312882)
 script = ExtResource("12_sof0w")
 
-[node name="heartFly" type="TextureProgressBar" parent="flyguy" unique_id=1667987126]
-offset_left = 49.832684
-offset_top = -39.351967
-offset_right = 89.8327
-offset_bottom = 0.64803314
-scale = Vector2(5.597775, 5.764582)
+[node name="heartFly" type="TextureProgressBar" parent="." unique_id=1667987126]
+offset_left = 928.99994
+offset_top = 36.000004
+offset_right = 968.99994
+offset_bottom = 76.0
+scale = Vector2(13.569914, 12.182443)
 max_value = 3.0
 texture_under = ExtResource("8_27bay")
 texture_progress = ExtResource("12_ggavl")
@@ -107,3 +161,6 @@ position = Vector2(966.99994, 371)
 rotation = 0.29147
 scale = Vector2(3.8368113, 3.338298)
 texture = ExtResource("14_ggavl")
+
+[node name="OscarAnim" type="AnimationPlayer" parent="." unique_id=51266530]
+libraries/ = SubResource("AnimationLibrary_lhbbi")
