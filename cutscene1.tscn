@@ -183,12 +183,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -350.0
-offset_top = -322.00003
-offset_right = -290.0
-offset_bottom = -282.00003
+offset_left = -332.0
+offset_top = -322.0
+offset_right = -272.0
+offset_bottom = -282.0
 grow_horizontal = 2
-scale = Vector2(11.119999, 4.12)
+scale = Vector2(9.719997, 4.12)
 texture = ExtResource("5_iq8bq")
 
 [node name="Label" type="Label" parent="GUI/TextureRect" unique_id=80718008]

@@ -41,8 +41,11 @@ script = ExtResource("1_7jktm")
 [node name="GUI" type="Control" parent="Oscar/Camera2D" unique_id=1156663988]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 50.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="Oscar/Camera2D/GUI" unique_id=309452174]
 texture_filter = 1
@@ -50,12 +53,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -350.0
-offset_top = -322.00003
-offset_right = -290.0
-offset_bottom = -282.00003
+offset_left = -213.0
+offset_top = -226.99997
+offset_right = -153.0
+offset_bottom = -186.99997
 grow_horizontal = 2
-scale = Vector2(11.119999, 4.12)
+scale = Vector2(6.1127195, 3.8334918)
 texture = ExtResource("7_hve3p")
 
 [node name="Label" type="Label" parent="Oscar/Camera2D/GUI/TextureRect" unique_id=883681826]

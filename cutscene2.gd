@@ -65,4 +65,6 @@ func _on_collect_finished() -> void:
 	label1.text = "NOW LET'S GO!"
 	label1.show()
 	animationplayer.play("exit")
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_file("res://game.tscn")
 	

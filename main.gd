@@ -12,7 +12,6 @@ enum GameState {
 @onready var card_grid: GridContainer = $GridContainer
 @onready var turnToken = $"../../../turnToken"
 @onready var oscarAnim = $"../../../OscarAnim"
-@onready var oscarSpriteAnim = $AnimatedSprite2D
 
 var card_deck: Array = [
 	"butterfly", "butterfly", "goldfish", "goldfish", "mockingbird", "mockingbird",
@@ -23,10 +22,6 @@ var current_hand: Array = []
 var matches: int = 0
 var current_state: GameState = GameState.STARTUP
 var last_actor: GameState = GameState.PLAYER_TURN
-
-# External reference to the main Game Master node managing health/stats
-var gamemaster: Node = null
-
 
 func _ready() -> void:
 	randomize()
@@ -46,7 +41,7 @@ func _ready() -> void:
 	
 	if is_instance_valid(turnToken):
 		turnToken.show()
-		
+	print("ready finished")	
 	change_state(GameState.PLAYER_TURN)
 
 
@@ -86,8 +81,7 @@ func print_board() -> void:
 		
 		var card = Card.new()
 		card.id = item
-		# Pass the outer gamemaster node (or self if null) to card instances
-		card.gamemaster = gamemaster if is_instance_valid(gamemaster) else self
+		card.gamemaster = self
 		card.face_down = false
 		
 		card_grid.add_child(card)
@@ -97,7 +91,7 @@ func print_board() -> void:
 			
 		spawned_cards.append(card)
 
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(1.75).timeout
 	
 	for card in spawned_cards:
 		if is_instance_valid(card):
@@ -105,6 +99,7 @@ func print_board() -> void:
 
 
 func my_turn(card) -> void:
+	print("state=", current_state, " face_down=", card.face_down)
 	if current_state != GameState.PLAYER_TURN:
 		return
 		
@@ -183,9 +178,6 @@ func check_hand_match() -> void:
 					oscarAnim.play("hit")
 				await get_tree().create_timer(0.75).timeout
 				
-				if is_instance_valid(oscarSpriteAnim):
-					oscarSpriteAnim.play("hit")
-				await get_tree().create_timer(0.25).timeout
 				
 				if is_instance_valid(oscarAnim):
 					oscarAnim.play("return")

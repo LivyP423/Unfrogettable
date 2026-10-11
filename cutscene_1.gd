@@ -14,6 +14,7 @@ var cutscene1Finished = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cutscene1Finished = false
+	oscarsanimations.play("default")
 	oscar.position.x = 494
 	oscar.position.y = 213
 	paper.hide()
@@ -27,8 +28,8 @@ func _ready() -> void:
 	await get_tree().create_timer(2).timeout
 	dialoguebox.hide()
 	label1.hide()
-	animationplayer1.play("new_animation")
 	oscarsanimations.play("walk")
+	animationplayer1.play("new_animation")
 	$AnimationPlayer.animation_finished.connect(_on_animation_finished)
 
 	

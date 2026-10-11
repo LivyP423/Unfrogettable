@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="2_bjebc"]
 [ext_resource type="PackedScene" uid="uid://biohgw6xefbdm" path="res://main.tscn" id="3_5rr72"]
 [ext_resource type="PackedScene" uid="uid://dg0l5vjf2uedf" path="res://oscar.tscn" id="3_j7kpp"]
+[ext_resource type="Script" uid="uid://depuxp4dfwe8w" path="res://tutorial.gd" id="4_65or1"]
 [ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_bjebc"]
+[ext_resource type="FontFile" uid="uid://bsrqg8k2vcdiy" path="res://pentabit-sans.ttf" id="4_ubhxj"]
 [ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_5rr72"]
 [ext_resource type="Script" uid="uid://dk1f65dxut1a4" path="res://battleOscar.gd" id="5_gyffv"]
 [ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="8_1pe0h"]
@@ -75,6 +77,7 @@ _data = {
 script = null
 
 [node name="Control" type="Control" parent="." unique_id=357640139]
+z_index = 5
 layout_mode = 3
 anchors_preset = 0
 offset_left = 368.0
@@ -103,7 +106,30 @@ offset_bottom = 173.0
 scale = Vector2(8.503989, 10.977682)
 texture = ExtResource("2_bjebc")
 
+[node name="Tutorial" type="TextureRect" parent="Control" unique_id=337922314]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 176.0
+offset_right = 540.0
+offset_bottom = 216.0
+scale = Vector2(4.2163677, 3.7752852)
+texture = ExtResource("2_bjebc")
+script = ExtResource("4_65or1")
+
+[node name="Label" type="Label" parent="Control/Tutorial" unique_id=1137812811]
+layout_mode = 0
+offset_left = 5.9292736
+offset_top = 7.15178
+offset_right = 217.92928
+offset_bottom = 38.15178
+scale = Vector2(0.3067338, 0.81199)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ubhxj")
+text = "Make matches to 
+damage your enemy!"
+
 [node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("3_j7kpp")]
+z_index = 2
 position = Vector2(359, 109)
 scale = Vector2(2.5359313, 2.1980472)
 script = ExtResource("5_gyffv")
@@ -142,16 +168,17 @@ region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
 position = Vector2(582, 322)
 
 [node name="flyguy" parent="." unique_id=589937618 instance=ExtResource("2_5hph3")]
+z_index = 1
 position = Vector2(812.99994, 120.99999)
 scale = Vector2(2.207388, 1.9312882)
 script = ExtResource("12_sof0w")
 
 [node name="heartFly" type="TextureProgressBar" parent="." unique_id=1667987126]
-offset_left = 928.99994
-offset_top = 36.000004
-offset_right = 968.99994
-offset_bottom = 76.0
-scale = Vector2(13.569914, 12.182443)
+offset_left = 963.0
+offset_top = 49.0
+offset_right = 1003.0
+offset_bottom = 89.0
+scale = Vector2(12.317175, 11.08043)
 max_value = 3.0
 texture_under = ExtResource("8_27bay")
 texture_progress = ExtResource("12_ggavl")

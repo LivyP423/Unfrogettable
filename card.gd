@@ -38,8 +38,10 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
+	print("card pressed: ", id)
 	if gamemaster and gamemaster.has_method("my_turn"):
 		gamemaster.my_turn(self)
+
 
 
 func play(anim_name: String) -> void:
