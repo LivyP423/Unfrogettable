@@ -10,31 +10,31 @@ enum GameState {
 }
 
 @onready var card_grid: GridContainer = $GridContainer
-
+@onready var turnToken = $"../../../turnToken"
 var card_deck: Array = [
 	"butterfly", "butterfly", "goldfish", "goldfish", "mockingbird", "mockingbird",
 	"worm", "worm", "hummingbird", "hummingbird", "ladybug", "ladybug",
 	"lotus", "lotus", "trout", "trout"
 ]
-
 var current_hand: Array = []
 var matches: int = 0
 var current_state: GameState = GameState.STARTUP
 var last_actor: GameState = GameState.PLAYER_TURN
 
-# Set this reference from your main scene or parent node
-var gamemaster: Node = null
-
 
 func _ready() -> void:
 	randomize()
 	card_deck.shuffle()
-	
+	turnToken.hide()
+	turnToken.scale.x = 3.8
+	turnToken.scale.y = 3.3
+	turnToken.position.y = 372.0
 	if card_grid:
 		card_grid.add_theme_constant_override("h_separation", 12)
 		card_grid.add_theme_constant_override("v_separation", 12)
 		
 	await print_board()
+	turnToken.show()
 	change_state(GameState.PLAYER_TURN)
 
 
@@ -44,9 +44,13 @@ func change_state(new_state: GameState) -> void:
 	match current_state:
 		GameState.PLAYER_TURN:
 			print("--- Player's Turn ---")
+			turnToken.position.x = 184.0
+			turnToken.rotation_degrees = -16.7
 			
 		GameState.AI_TURN:
 			print("--- AI's Turn ---")
+			turnToken.position.x = 967.0
+			turnToken.rotation_degrees = 16.7
 			run_ai_turn()
 			
 		GameState.CHECKING_MATCH:
@@ -109,19 +113,16 @@ func run_ai_turn() -> void:
 	if available_cards.size() < 2:
 		change_state(GameState.GAME_OVER)
 		return
-		
-	available_cards.shuffle()
-	
-	# Pick 1st card
-	flip_card(available_cards[0])
-	await get_tree().create_timer(0.8).timeout
-	
-	# Pick 2nd card
-	flip_card(available_cards[1])
-	await get_tree().create_timer(0.5).timeout
-	
-	change_state(GameState.CHECKING_MATCH)
 
+	# Shuffle and flip the cards outside of the guard clause
+	available_cards.shuffle()
+	flip_card(available_cards[0])
+	
+	await get_tree().create_timer(0.8).timeout
+	flip_card(available_cards[1])
+	
+	await get_tree().create_timer(0.5).timeout
+	change_state(GameState.CHECKING_MATCH)
 
 func flip_card(card) -> void:
 	last_actor = current_state

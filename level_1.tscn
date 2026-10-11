@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dfvpfdb1lahr2"]
 
 [ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_rka8t"]
-[ext_resource type="Script" uid="uid://bst5un318wh1n" path="res://gamemaster.gd" id="1_ubhxj"]
 [ext_resource type="PackedScene" uid="uid://d1wprabv1lgn5" path="res://flyguy.tscn" id="2_5hph3"]
 [ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="2_bjebc"]
 [ext_resource type="PackedScene" uid="uid://biohgw6xefbdm" path="res://main.tscn" id="3_5rr72"]
@@ -17,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dwsvxlt47tk7" path="res://Sprites/turnToken.png" id="14_ggavl"]
 
 [node name="Level1" type="Node2D" unique_id=322872690]
-script = ExtResource("1_ubhxj")
 
 [node name="world" parent="." unique_id=1747902996 instance=ExtResource("1_rka8t")]
 script = null
@@ -105,7 +103,7 @@ texture_under = ExtResource("8_27bay")
 texture_progress = ExtResource("12_ggavl")
 
 [node name="turnToken" type="Sprite2D" parent="." unique_id=811246306]
-position = Vector2(184, 372)
-rotation = -0.29189542
+position = Vector2(966.99994, 371)
+rotation = 0.29147
 scale = Vector2(3.8368113, 3.338298)
 texture = ExtResource("14_ggavl")
