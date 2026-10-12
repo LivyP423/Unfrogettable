@@ -112,21 +112,23 @@ offset_left = 480.0
 offset_top = 176.0
 offset_right = 540.0
 offset_bottom = 216.0
-scale = Vector2(4.2163677, 3.7752852)
+scale = Vector2(4.616363, 5.3352866)
 texture = ExtResource("2_bjebc")
 script = ExtResource("4_65or1")
 
 [node name="Label" type="Label" parent="Control/Tutorial" unique_id=1137812811]
 layout_mode = 0
-offset_left = 5.9292736
-offset_top = 7.15178
-offset_right = 217.92928
-offset_bottom = 38.15178
-scale = Vector2(0.3067338, 0.81199)
+offset_left = 1.2997189
+offset_top = 7.3098226
+offset_right = 213.29971
+offset_bottom = 38.309822
+scale = Vector2(0.27339762, 0.7841679)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_ubhxj")
 text = "Make matches to 
 damage your enemy!"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("3_j7kpp")]
 z_index = 2

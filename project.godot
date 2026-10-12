@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Unfroggettable (Copy)"
-run/main_scene="uid://uq3mt8oqlkar"
+run/main_scene="uid://dfvpfdb1lahr2"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
