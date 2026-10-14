@@ -3,6 +3,7 @@ extends Node2D
 var oscarHealth: int = 3
 var flyHealth: int = 3
 var level: int = 1
+var gemCount = 0
 
 # Safe node lookups: checks relative paths first, then root paths
 @onready var oscarHeart = _find_heart_node(["../Oscar/heart", "Oscar/heart"])
@@ -24,6 +25,7 @@ func healthDisplay() -> void:
 	if is_instance_valid(oscarHeart) and is_instance_valid(flyHeart):
 		oscarHeart.value = oscarHealth
 		flyHeart.value = flyHealth
+
 
 
 # Helper function to prevent "Node not found" crashes

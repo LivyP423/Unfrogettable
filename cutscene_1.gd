@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_animation_finished(_anim_name: String) -> void:
-	oscarsanimations.stop()
+	oscarsanimations.play("default")
 	dialoguebox.show()
 	label2.show()
 	await get_tree().create_timer(2).timeout
@@ -53,5 +53,7 @@ func _on_animation_finished(_anim_name: String) -> void:
 	label4.show()
 	await get_tree().create_timer(1).timeout
 	animationplayer2.play("exitscene")
-	await get_tree().create_timer(2).timeout
+	oscarsanimations.play("walk")
+	await get_tree().create_timer(1.9).timeout
+	oscarsanimations.play("default")
 	get_tree().change_scene_to_file("res://cutscene2.tscn")

@@ -1,0 +1,384 @@
+[gd_scene format=3 uid="uid://dfvpfdb1lahr2"]
+
+[ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_rka8t"]
+[ext_resource type="PackedScene" uid="uid://d1wprabv1lgn5" path="res://flyguy.tscn" id="2_5hph3"]
+[ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="2_bjebc"]
+[ext_resource type="PackedScene" uid="uid://biohgw6xefbdm" path="res://main.tscn" id="3_5rr72"]
+[ext_resource type="PackedScene" uid="uid://dg0l5vjf2uedf" path="res://oscar.tscn" id="3_j7kpp"]
+[ext_resource type="Script" uid="uid://depuxp4dfwe8w" path="res://tutorial.gd" id="4_65or1"]
+[ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_bjebc"]
+[ext_resource type="FontFile" uid="uid://bsrqg8k2vcdiy" path="res://pentabit-sans.ttf" id="4_ubhxj"]
+[ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_5rr72"]
+[ext_resource type="Script" uid="uid://dk1f65dxut1a4" path="res://battleOscar.gd" id="5_gyffv"]
+[ext_resource type="Texture2D" uid="uid://brim2qkblupqi" path="res://Sprites/realdie.png" id="6_lhbbi"]
+[ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="8_1pe0h"]
+[ext_resource type="Texture2D" uid="uid://bu8bsodm40k7o" path="res://Sprites/empty.png" id="8_27bay"]
+[ext_resource type="Texture2D" uid="uid://cjwyu10q122tf" path="res://Sprites/moreKeys1.png" id="8_gjkv5"]
+[ext_resource type="Texture2D" uid="uid://bi3i83ujibk3e" path="res://Sprites/human.png" id="9_sof0w"]
+[ext_resource type="Texture2D" uid="uid://b5t3a5mrvcjsx" path="res://Sprites/zombie.png" id="12_ggavl"]
+[ext_resource type="Script" uid="uid://dge4igmbwk46" path="res://battleFlyguy.gd" id="12_sof0w"]
+[ext_resource type="Texture2D" uid="uid://dwsvxlt47tk7" path="res://Sprites/turnToken.png" id="14_ggavl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ld1"]
+atlas = ExtResource("8_gjkv5")
+region = Rect2(19, 0, 19, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qmij"]
+atlas = ExtResource("8_gjkv5")
+region = Rect2(57, 0, 19, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ld1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qmij")
+}],
+"loop": 1,
+"name": &"shine",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_ggavl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(359, 109)]
+}
+
+[sub_resource type="Animation" id="Animation_ubhxj"]
+resource_name = "hit"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(359, 109), Vector2(665, 109)]
+}
+
+[sub_resource type="Animation" id="Animation_65or1"]
+resource_name = "return"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Oscar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(664, 109), Vector2(359, 109)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhbbi"]
+_data = {
+&"RESET": SubResource("Animation_ggavl"),
+&"hit": SubResource("Animation_ubhxj"),
+&"return": SubResource("Animation_65or1")
+}
+
+[sub_resource type="Animation" id="Animation_lhbbi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flyguy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(812.99994, 120.99999)]
+}
+
+[sub_resource type="Animation" id="Animation_gjkv5"]
+resource_name = "hit"
+length = 0.8333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flyguy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(812.99994, 120.99999), Vector2(477.0001, 121)]
+}
+
+[sub_resource type="Animation" id="Animation_00ld1"]
+resource_name = "return"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flyguy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(475.0001, 121), Vector2(812.99994, 120.99999)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3qmij"]
+_data = {
+&"RESET": SubResource("Animation_lhbbi"),
+&"hit": SubResource("Animation_gjkv5"),
+&"return": SubResource("Animation_00ld1")
+}
+
+[node name="Level1" type="Node2D" unique_id=322872690]
+
+[node name="world" parent="." unique_id=1747902996 instance=ExtResource("1_rka8t")]
+script = null
+
+[node name="Control" type="Control" parent="." unique_id=357640139]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_left = 368.0
+offset_top = 78.0
+offset_right = 408.0
+offset_bottom = 118.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control" unique_id=819638779]
+layer = 2
+
+[node name="CardGame" parent="Control/CanvasLayer" unique_id=1656682532 instance=ExtResource("3_5rr72")]
+z_index = 3
+offset_left = -17.999939
+offset_top = 92.0
+offset_right = 22.000061
+offset_bottom = 132.0
+scale = Vector2(0.92646146, 0.840452)
+
+[node name="GameBoard" type="TextureRect" parent="Control" unique_id=42123758]
+z_index = 2
+layout_mode = 0
+offset_left = -38.0
+offset_top = 133.0
+offset_right = 22.0
+offset_bottom = 173.0
+scale = Vector2(8.503989, 10.977682)
+texture = ExtResource("2_bjebc")
+
+[node name="Tutorial" type="TextureRect" parent="Control" unique_id=337922314]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 176.0
+offset_right = 540.0
+offset_bottom = 216.0
+scale = Vector2(4.85608, 5.857178)
+texture = ExtResource("2_bjebc")
+script = ExtResource("4_65or1")
+
+[node name="Label" type="Label" parent="Control/Tutorial" unique_id=1137812811]
+layout_mode = 0
+offset_left = 1.2997189
+offset_top = 7.3098226
+offset_right = 213.29971
+offset_bottom = 38.309822
+scale = Vector2(0.27339762, 0.7841679)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ubhxj")
+text = "Make matches to 
+damage your enemy!"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="GameOverDeath" type="CanvasLayer" parent="Control" unique_id=489187797]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Control/GameOverDeath" unique_id=1411580569]
+offset_left = 186.00002
+offset_top = -33.0
+offset_right = 330.0
+offset_bottom = 111.0
+scale = Vector2(5.4908223, 5.45127)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_lhbbi")
+
+[node name="Label" type="Label" parent="Control/GameOverDeath" unique_id=1223488809]
+offset_left = 421.99997
+offset_top = 175.0
+offset_right = 507.99997
+offset_bottom = 198.0
+scale = Vector2(3.559974, 6.6124015)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ubhxj")
+theme_override_font_sizes/font_size = 16
+text = "YOU LOST!"
+
+[node name="Label2" type="Label" parent="Control/GameOverDeath" unique_id=371145755]
+offset_left = 337.0
+offset_top = 278.0
+offset_right = 801.0
+offset_bottom = 343.0
+scale = Vector2(1.0400037, 1.36)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ubhxj")
+text = "Knight Oscar got knocked out!
+
+Once he woke up, he forgot all about his quest and
+went back home.
+
+Unable to get into the castle of Kingdom Anura, Knight
+Oscar failed to save Princess Mochi.  She had no choice
+but to relinquish control of the Kingdom to the enemies.
+
+Oscar continued to wonder what happened to 
+Princess Mochi.
+"
+horizontal_alignment = 1
+
+[node name="GameOverWin" type="CanvasLayer" parent="Control" unique_id=1590637697]
+
+[node name="TextureRect" type="TextureRect" parent="Control/GameOverWin" unique_id=938262681]
+offset_left = 186.00002
+offset_top = -33.0
+offset_right = 330.0
+offset_bottom = 111.0
+scale = Vector2(5.4908223, 5.45127)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_lhbbi")
+
+[node name="Label" type="Label" parent="Control/GameOverWin" unique_id=412220685]
+offset_left = 421.99997
+offset_top = 175.0
+offset_right = 507.99997
+offset_bottom = 198.0
+scale = Vector2(3.559974, 6.6124015)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ubhxj")
+theme_override_font_sizes/font_size = 16
+text = "YOU WON!"
+
+[node name="Label2" type="Label" parent="Control/GameOverWin" unique_id=693632115]
+offset_left = 337.0
+offset_top = 278.0
+offset_right = 801.0
+offset_bottom = 343.0
+scale = Vector2(1.0400037, 1.36)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ubhxj")
+text = "The Fly Guy got knocked out!
+
+While he was passed out, Knight Oscar was able to grab
+the pink gemstone. After placing it in his key, Oscar
+notices the key begin to weakly illuminate. 
+"
+horizontal_alignment = 1
+
+[node name="Gemstone" type="Sprite2D" parent="Control/GameOverWin" unique_id=1072592254]
+position = Vector2(578, 105.99999)
+scale = Vector2(23.996004, -24.76306)
+texture = ExtResource("8_1pe0h")
+region_enabled = true
+region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
+
+[node name="key" type="AnimatedSprite2D" parent="Control/GameOverWin" unique_id=972988210]
+position = Vector2(573, 476)
+rotation = 0.896373
+scale = Vector2(7.1442957, 6.945498)
+sprite_frames = SubResource("SpriteFrames_xrivr")
+animation = &"shine"
+
+[node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("3_j7kpp")]
+z_index = 2
+position = Vector2(359, 109)
+scale = Vector2(2.5359313, 2.1980472)
+script = ExtResource("5_gyffv")
+
+[node name="Marker2D" parent="Oscar/AnimatedSprite2D" parent_id_path=PackedInt32Array(1827571012, 1001032267) index="0" unique_id=412289285]
+position = Vector2(15.73945, 0.46976042)
+
+[node name="sword" type="Sprite2D" parent="Oscar/AnimatedSprite2D/Marker2D" index="0" unique_id=939908521]
+position = Vector2(6.261932, -3.5146298)
+rotation = 0.9491351
+scale = Vector2(1.2197592, 1.2278985)
+texture = ExtResource("5_5rr72")
+offset = Vector2(-0.24, -1.705)
+
+[node name="CollisionShape2D" parent="Oscar" index="1" unique_id=375633655]
+visible = true
+
+[node name="shield" type="Sprite2D" parent="Oscar" unique_id=1912177313]
+position = Vector2(-26, 5)
+scale = Vector2(4.5432253, 4.64292)
+texture = ExtResource("4_bjebc")
+
+[node name="heart" type="TextureProgressBar" parent="." unique_id=272128451]
+offset_left = 43.0
+offset_top = 49.0
+offset_right = 83.00003
+offset_bottom = 89.0
+scale = Vector2(12.13113, 10.780744)
+max_value = 3.0
+fill_mode = 1
+texture_under = ExtResource("8_27bay")
+texture_progress = ExtResource("9_sof0w")
+
+[node name="Gemstone" type="Sprite2D" parent="." unique_id=1147768559]
+visible = false
+position = Vector2(949, 213)
+scale = Vector2(10.507873, 9.880589)
+texture = ExtResource("8_1pe0h")
+region_enabled = true
+region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1299225685]
+position = Vector2(582, 322)
+
+[node name="flyguy" parent="." unique_id=589937618 instance=ExtResource("2_5hph3")]
+z_index = 1
+position = Vector2(812.99994, 120.99999)
+scale = Vector2(2.207388, 1.9312882)
+script = ExtResource("12_sof0w")
+
+[node name="heartFly" type="TextureProgressBar" parent="." unique_id=1667987126]
+offset_left = 963.0
+offset_top = 49.0
+offset_right = 1003.0
+offset_bottom = 89.0
+scale = Vector2(12.317175, 11.08043)
+max_value = 3.0
+texture_under = ExtResource("8_27bay")
+texture_progress = ExtResource("12_ggavl")
+
+[node name="turnToken" type="Sprite2D" parent="." unique_id=811246306]
+position = Vector2(966.99994, 371)
+rotation = 0.29147
+scale = Vector2(3.8368113, 3.338298)
+texture = ExtResource("14_ggavl")
+
+[node name="OscarAnim" type="AnimationPlayer" parent="." unique_id=51266530]
+libraries/ = SubResource("AnimationLibrary_lhbbi")
+
+[node name="FlyAnim" type="AnimationPlayer" parent="." unique_id=1268483873]
+libraries/ = SubResource("AnimationLibrary_3qmij")
+
+[editable path="Oscar"]
+[editable path="flyguy"]

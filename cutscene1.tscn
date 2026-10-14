@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxormxbgr8jaf" path="res://cutscene_1.gd" id="1_7vpm8"]
 [ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_b8r0m"]
+[ext_resource type="Texture2D" uid="uid://cs8ltrbkx2g1k" path="res://Sprites/mushrooms/pixil-frame-0 (26).png" id="3_soggy"]
 [ext_resource type="Texture2D" uid="uid://b8c3x4vqtr4kk" path="res://Sprites/Oscar/OscarMain.png" id="4_coqp7"]
 [ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="5_iq8bq"]
 [ext_resource type="Texture2D" uid="uid://bp8gg42g3aukp" path="res://Sprites/Oscar/OscarHold.png" id="5_rn0lg"]
@@ -12,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://dmfo5kknbhfuf" path="res://Sprites/Oscar/OscarHold2.png" id="7_klefm"]
 [ext_resource type="Texture2D" uid="uid://b5jxgdhutc0rq" path="res://Sprites/Oscar/OscarMain2.png" id="8_5td0l"]
 [ext_resource type="Texture2D" uid="uid://dnjb7rcwbplem" path="res://Sprites/Oscar/OscarMain1.png" id="9_jvx24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coqp7"]
+size = Vector2(60.3001, 30.946724)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
@@ -127,7 +131,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8tvh5"]
 resource_name = "exitscene"
-length = 1.6666666
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,10 +139,10 @@ tracks/0/path = NodePath("Oscar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.6666667, 1.3333334),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.033333335, 0.46666667, 1.1, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-227.99994, 152), Vector2(225.09998, 152), Vector2(334, -162)]
+"values": [Vector2(-227.99994, 152), Vector2(1.9999998, 141), Vector2(308, 19.999998), Vector2(339.60712, -77.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d8i1p"]
@@ -151,6 +155,24 @@ _data = {
 script = ExtResource("1_7vpm8")
 
 [node name="Game" parent="." unique_id=1747902996 instance=ExtResource("1_b8r0m")]
+
+[node name="pinkStone" parent="Game/Castle" parent_id_path=PackedInt32Array(1747902996, 1955702546) index="1" unique_id=1581564364]
+visible = false
+
+[node name="House" parent="Game" index="2" unique_id=1418882552]
+visible = false
+
+[node name="House2" type="Sprite2D" parent="Game" unique_id=343656771]
+position = Vector2(380, -197)
+scale = Vector2(4.326119, 4.153617)
+texture = ExtResource("3_soggy")
+
+[node name="Area2D" type="Area2D" parent="Game/House2" unique_id=939178740]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/House2/Area2D" unique_id=407637822]
+position = Vector2(2.4769287, 16.747635)
+shape = SubResource("RectangleShape2D_coqp7")
+debug_color = Color(0.15355392, 0.70196074, 0, 0.41960785)
 
 [node name="Oscar" type="CharacterBody2D" parent="." unique_id=1830897286]
 position = Vector2(-227.99994, 152)
@@ -276,3 +298,5 @@ uppercase = true
 libraries/ = SubResource("AnimationLibrary_d8i1p")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1989067801]
+
+[editable path="Game"]

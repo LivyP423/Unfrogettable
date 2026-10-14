@@ -12,6 +12,14 @@ enum GameState {
 @onready var card_grid: GridContainer = $GridContainer
 @onready var turnToken = $"../../../turnToken"
 @onready var oscarAnim = $"../../../OscarAnim"
+@onready var oscarSpriteAnims = $"../../../Oscar/AnimatedSprite2D"
+@onready var flySpriteAnims = $"../../../flyguy/AnimatedSprite2D"
+@onready var flyAnims = $"../../../FlyAnim"
+@onready var shield = $"../../../Oscar/shield"
+@onready var sword = $"../../../Oscar/AnimatedSprite2D/Marker2D/sword"
+@onready var gameOverDeathScreen = $"../../GameOverDeath"
+@onready var keyAnim = $"../../GameOverWin/key"
+@onready var gameOverWinScreen = $"../../GameOverWin"
 
 var card_deck: Array = [
 	"butterfly", "butterfly", "goldfish", "goldfish", "mockingbird", "mockingbird",
@@ -24,6 +32,12 @@ var current_state: GameState = GameState.STARTUP
 var last_actor: GameState = GameState.PLAYER_TURN
 
 func _ready() -> void:
+	gameOverDeathScreen.hide()
+	gameOverWinScreen.hide()
+	flySpriteAnims.flip_h = true
+	oscarSpriteAnims.flip_h = true
+	flySpriteAnims.play("default")
+	oscarSpriteAnims.play("default")
 	randomize()
 	card_deck.shuffle()
 	
@@ -66,7 +80,18 @@ func change_state(new_state: GameState) -> void:
 			check_hand_match()
 			
 		GameState.GAME_OVER:
+			card_grid.hide()
 			print("--- Game Over ---")
+			if gamemaster.oscarHealth <= 0:
+				gameOverDeathScreen.show()
+				oscarSpriteAnims.hide()
+			elif gamemaster.flyHealth <= 0:
+				flySpriteAnims.hide()
+				gameOverWinScreen.show()
+				keyAnim.play("shine")
+				await get_tree().create_timer(5).timeout
+				gamemaster.gemCount += 1
+				get_tree().change_scene_to_file("res://game.tscn")
 
 
 func print_board() -> void:
@@ -99,7 +124,6 @@ func print_board() -> void:
 
 
 func my_turn(card) -> void:
-	print("state=", current_state, " face_down=", card.face_down)
 	if current_state != GameState.PLAYER_TURN:
 		return
 		
@@ -164,27 +188,52 @@ func check_hand_match() -> void:
 		
 		# Modify health variables on the Game Master if assigned
 		if is_instance_valid(gamemaster):
-			if who_just_played == GameState.PLAYER_TURN:
+			if who_just_played == GameState.PLAYER_TURN: #Oscar hits
 				if "flyHealth" in gamemaster:
+					if is_instance_valid(oscarAnim):
+						oscarAnim.play("hit")
+						oscarSpriteAnims.play("walk")
+					await get_tree().create_timer(.75).timeout
+					oscarSpriteAnims.play("default")
 					gamemaster.flyHealth -= 1
 					print("Player hit! AI Health: ", gamemaster.flyHealth)
+					if is_instance_valid(oscarSpriteAnims):
+						oscarSpriteAnims.z_index = 10
+						shield.z_index = 11
+						
+						oscarSpriteAnims.play("hit")
+						for i in range(3):
+							flySpriteAnims.play("hurt")
+							await get_tree().create_timer(.15).timeout
+						
+						await get_tree().create_timer(.35).timeout
+					if is_instance_valid(oscarAnim):
+						oscarAnim.play("return")
+						oscarSpriteAnims.play("walk")
+					await get_tree().create_timer(1.0).timeout
+					oscarSpriteAnims.play("default")
+					oscarSpriteAnims.z_index = 1
+					flySpriteAnims.play("default")
 			else:
-				if "oscarHealth" in gamemaster:
-					gamemaster.oscarHealth -= 1
+				if "oscarHealth" in gamemaster: #Fly hits
 					print("AI hit! Player Health: ", gamemaster.oscarHealth)
-				
-				# Play hit sequence animations safely
-				if is_instance_valid(oscarAnim):
-					oscarAnim.play("hit")
-				await get_tree().create_timer(0.75).timeout
-				
-				
-				if is_instance_valid(oscarAnim):
-					oscarAnim.play("return")
-				await get_tree().create_timer(1.0).timeout
-		else:
-			print("Warning: gamemaster reference is null!")
-			
+					if is_instance_valid(flyAnims):
+						flySpriteAnims.z_index = 10
+						flyAnims.play("hit")
+						flySpriteAnims.play("walk")
+						await get_tree().create_timer(0.65).timeout
+						flySpriteAnims.play("default")
+						gamemaster.oscarHealth -= 1
+						for i in range(3):
+							oscarSpriteAnims.play("hurt")
+							await get_tree().create_timer(.15).timeout
+						oscarSpriteAnims.play("default")
+						flySpriteAnims.play("hit")
+						await get_tree().create_timer(0.6).timeout
+						flyAnims.play("return")
+						flySpriteAnims.play("default")
+						await get_tree().create_timer(0.85).timeout
+						flySpriteAnims.z_index = 1
 		for item in current_hand:
 			if is_instance_valid(item):
 				item.matched = true

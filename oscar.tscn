@@ -5,8 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://bp8gg42g3aukp" path="res://Sprites/Oscar/OscarHold.png" id="3_1vusm"]
 [ext_resource type="Texture2D" uid="uid://buvo7faucrp0d" path="res://Sprites/Oscar/OscarHold1.png" id="4_xdf6n"]
 [ext_resource type="Texture2D" uid="uid://dmfo5kknbhfuf" path="res://Sprites/Oscar/OscarHold2.png" id="5_4xlgo"]
+[ext_resource type="Texture2D" uid="uid://dd4tj73asxwmc" path="res://Sprites/Oscar/spritesheet (1).png" id="6_phadm"]
 [ext_resource type="Texture2D" uid="uid://b5jxgdhutc0rq" path="res://Sprites/Oscar/OscarMain2.png" id="6_x4sxv"]
 [ext_resource type="Texture2D" uid="uid://dnjb7rcwbplem" path="res://Sprites/Oscar/OscarMain1.png" id="7_khpe3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vusm"]
+atlas = ExtResource("6_phadm")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdf6n"]
+atlas = ExtResource("6_phadm")
+region = Rect2(32, 0, 31, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
@@ -48,9 +57,20 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_phadm")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hit",
-"speed": 10.0
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vusm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdf6n")
+}],
+"loop": 1,
+"name": &"hurt",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -61,7 +81,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13qdw"]
@@ -78,9 +98,12 @@ texture_filter = 1
 position = Vector2(-1.9073486e-06, 3.000002)
 scale = Vector2(2.33, 2.33)
 sprite_frames = SubResource("SpriteFrames_xrivr")
-animation = &"hit"
-frame_progress = 0.41933522
+animation = &"hurt"
+
+[node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D" unique_id=412289285]
+position = Vector2(-10.729613, 2.5751066)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375633655]
+visible = false
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_13qdw")

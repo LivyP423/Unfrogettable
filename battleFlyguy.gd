@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var heart = $"../heartFly"
+@onready var flyAnim = $AnimatedSprite2D
 var health = gamemaster.flyHealth
 
 # Called when the node enters the scene tree for the first time.

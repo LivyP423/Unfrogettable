@@ -29,7 +29,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 			_on_collect_finished()
 
 func _run_intro_cutscene() -> void:
-	oscaranim.stop()
+	oscaranim.play("default")
 	chest.play("open")
 	await get_tree().create_timer(1).timeout
 	key.show()
@@ -60,10 +60,10 @@ func _run_intro_cutscene() -> void:
 func _on_collect_finished() -> void:
 	oscaranim.play("default")
 	await get_tree().create_timer(1).timeout
-	oscaranim.play("walk")
 	box.show()
 	label1.text = "NOW LET'S GO!"
 	label1.show()
+	oscaranim.play("walk")
 	animationplayer.play("exit")
 	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_file("res://game.tscn")
