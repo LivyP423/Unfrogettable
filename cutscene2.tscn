@@ -247,10 +247,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(7.1794453, 21.409079)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("frame/sword:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.65363085]
+}
 
 [sub_resource type="Animation" id="Animation_mt0bx"]
 resource_name = "collect"
-length = 0.5
+length = 1.3666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -258,10 +270,10 @@ tracks/0/path = NodePath("frame/shield:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.43333334),
+"times": PackedFloat32Array(0.033333335, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-4.5080256, 10.604493), Vector2(29.385637, 71.83045)]
+"values": [Vector2(-4.5080256, 10.604493), Vector2(-3.3392787, 65.02757)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -270,10 +282,22 @@ tracks/1/path = NodePath("frame/sword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.43333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(7.1794453, 21.409079), Vector2(-12.856223, 73.43112)]
+"values": [Vector2(7.1794453, 21.409079), Vector2(41.073112, 58.224678)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("frame/sword:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.65363085, 0.50897]
 }
 
 [sub_resource type="Animation" id="Animation_gg75r"]
@@ -286,10 +310,10 @@ tracks/0/path = NodePath("frame/shield:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.96666664),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.23333333, 0.46666667, 0.73333335, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(29.385635, 71.83045), Vector2(-135.74164, 71.8861)]
+"values": [Vector2(-3.0053506, 65.02757), Vector2(-30.387426, 65.02757), Vector2(-81.31141, 65.02757), Vector2(-124.555046, 65.02757), Vector2(-141.41841, 65.02757)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -298,10 +322,10 @@ tracks/1/path = NodePath("frame/sword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.93333334),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.23333333, 0.5, 0.76666665, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-12.856222, 73.43112), Vector2(-177.98347, 73.48678)]
+"values": [Vector2(38.06776, 58.624847), Vector2(6.511591, 58.224686), Vector2(-41.240074, 59.62527), Vector2(-90.82834, 59.025017), Vector2(-110.02919, 59.625275)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -363,7 +387,7 @@ layout_mode = 0
 offset_left = -4.5080256
 offset_top = 10.604493
 offset_right = 35.491974
-offset_bottom = 50.604477
+offset_bottom = 50.60466
 scale = Vector2(0.82247967, 0.86209226)
 texture = ExtResource("4_2f4n6")
 
@@ -372,8 +396,8 @@ z_index = 3
 layout_mode = 0
 offset_left = 7.1794453
 offset_top = 21.409079
-offset_right = 47.179443
-offset_bottom = 61.409058
+offset_right = 47.17933
+offset_bottom = 61.40909
 rotation = -0.65363085
 scale = Vector2(0.6850611, 0.7383634)
 texture = ExtResource("5_nchri")
@@ -443,6 +467,7 @@ now!"
 uppercase = true
 
 [node name="Paper" type="TextureRect" parent="GUI" unique_id=1383072477]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -267.0

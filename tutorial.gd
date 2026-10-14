@@ -4,11 +4,20 @@ extends TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	tutorialBox.show()
-	tutorialLabel.show()
-	await get_tree().create_timer(5).timeout
-	tutorialBox.hide()
-	tutorialLabel.hide()
+	var active_scene = get_tree().current_scene
+	if active_scene.scene_file_path == "res://level_1.tscn":
+		tutorialBox.show()
+		tutorialLabel.show()
+		await get_tree().create_timer(7).timeout
+		tutorialBox.hide()
+		tutorialLabel.hide()
+	else:
+		tutorialBox.show()
+		tutorialLabel.text = "Now, you only \nhave 10 seconds\n per turn!"
+		tutorialLabel.show()
+		await get_tree().create_timer(7).timeout
+		tutorialBox.hide()
+		tutorialLabel.hide()		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

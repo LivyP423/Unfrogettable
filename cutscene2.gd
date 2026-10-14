@@ -63,6 +63,7 @@ func _on_collect_finished() -> void:
 	box.show()
 	label1.text = "NOW LET'S GO!"
 	label1.show()
+	await get_tree().create_timer(.5).timeout
 	oscaranim.play("walk")
 	animationplayer.play("exit")
 	await get_tree().create_timer(2).timeout

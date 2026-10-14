@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://py0dorvdldjw" path="res://game.gd" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://dxlsdowg60rg7" path="res://world.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dg0l5vjf2uedf" path="res://oscar.tscn" id="2_feb5d"]
-[ext_resource type="Texture2D" uid="uid://cs8ltrbkx2g1k" path="res://Sprites/mushrooms/pixil-frame-0 (26).png" id="3_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="4_7jktm"]
 [ext_resource type="Texture2D" uid="uid://cqov2mniudo6l" path="res://Sprites/Shield.png" id="4_hve3p"]
 [ext_resource type="Script" uid="uid://cj0dvvwjkt8rn" path="res://flyguypink.gd" id="4_j5wjh"]
@@ -122,17 +121,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_vef74")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hve3p"]
 load_path = "res://.godot/imported/pixil-frame-0 (10).png-378ffcfb13efa708e1eddd3e413c6be8.ctex"
 
@@ -144,7 +132,6 @@ script = ExtResource("1_7jktm")
 [node name="House" parent="world" index="2" unique_id=1418882552]
 position = Vector2(380, -197)
 scale = Vector2(4.326119, 4.153617)
-texture = ExtResource("3_lc2xo")
 
 [node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("2_feb5d")]
 
@@ -237,10 +224,6 @@ position = Vector2(-469, 384)
 scale = Vector2(1.6744429, 1.375726)
 script = ExtResource("12_iotsf")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flyguyblue" unique_id=998358699]
-scale = Vector2(2.3, 2.3)
-sprite_frames = SubResource("SpriteFrames_xrivr")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="flyguyblue" unique_id=258554759]
 shape = SubResource("CapsuleShape2D_vfwuq")
 
@@ -256,6 +239,11 @@ region_rect = Rect2(40.987804, 36.022858, 4.9959145, 3.989729)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="flyguyblue/Area2D" unique_id=930845712]
 shape = SubResource("CircleShape2D_xrivr")
 debug_color = Color(0.8755744, 0.34478006, 5.7756904e-07, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flyguyblue" unique_id=1230397129]
+scale = Vector2(2.3, 2.3)
+sprite_frames = SubResource("SpriteFrames_iotsf")
+animation = &"defeat"
 
 [connection signal="body_entered" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_exited"]

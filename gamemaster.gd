@@ -1,6 +1,7 @@
 extends Node2D
 
 var oscarHealth: int = 3
+var maxHealth: int = 3
 var flyHealth: int = 3
 var level: int = 1
 var gemCount = 0
