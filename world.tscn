@@ -52,7 +52,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lj4"]
-size = Vector2(70.00001, 39.399998)
+size = Vector2(95.80002, 48.79999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(60.3001, 30.946724)
@@ -76,11 +76,11 @@ animation = &"unlocked"
 script = ExtResource("5_ioo17")
 
 [node name="Area2D" type="Area2D" parent="Castle" unique_id=1956060016]
+position = Vector2(0, 19.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Castle/Area2D" unique_id=1464511095]
-visible = false
 visibility_layer = 6
-position = Vector2(0, 13.49999)
+position = Vector2(-0.099998474, 8.799991)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_b1lj4")
 
@@ -110,3 +110,6 @@ texture = ExtResource("4_aqk2v")
 position = Vector2(2.4769287, 16.747635)
 shape = SubResource("RectangleShape2D_xrivr")
 debug_color = Color(0.15355392, 0.70196074, 0, 0.41960785)
+
+[connection signal="body_entered" from="Castle/Area2D" to="Castle" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Castle/Area2D" to="Castle" method="_on_area_2d_body_exited"]

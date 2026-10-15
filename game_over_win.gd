@@ -10,9 +10,13 @@ func _ready() -> void:
 func gemDisplay():
 	# The win screen shows BEFORE gemCount goes up, so gemCount can't tell
 	# us which level we won — the scene name can.
-	if get_tree().current_scene.name == "Level2":
-		gemstone.play("blue")
-		key.play("shineBlue")
-	else:
-		gemstone.play("pink")
-		key.play("shine")
+	match get_tree().current_scene.name:
+		"Level2":
+			gemstone.play("blue")
+			key.play("shineBlue")
+		"Level1":
+			gemstone.play("pink")
+			key.play("shine")
+		"Level3":
+			gemstone.play("green")
+			key.play("shineGreen")

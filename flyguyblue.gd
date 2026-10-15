@@ -38,7 +38,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void: # PINKFlyGuy Area
 				label.show()
 				await get_tree().create_timer(2.0).timeout
 				get_tree().change_scene_to_file("res://level_2.tscn")
-			_:
+			2,3:
 				stone.hide()
 				dialogue_active = true
 				label.text = "Ugh..."

@@ -11,13 +11,18 @@ func _ready() -> void:
 		await get_tree().create_timer(7).timeout
 		tutorialBox.hide()
 		tutorialLabel.hide()
-	else:
+	elif active_scene.scene_file_path == "res://level_2.tscn":
 		tutorialBox.show()
 		tutorialLabel.text = "Now, you only \nhave 10 seconds\n per turn!"
 		tutorialLabel.show()
 		await get_tree().create_timer(7).timeout
 		tutorialBox.hide()
-		tutorialLabel.hide()		
+		tutorialLabel.hide()
+	else:
+		tutorialLabel.add_theme_color_override("font_color", Color.MIDNIGHT_BLUE)
+		tutorialBox.hide()
+		tutorialLabel.hide()
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

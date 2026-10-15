@@ -8,10 +8,13 @@
 [ext_resource type="Script" uid="uid://cj0dvvwjkt8rn" path="res://flyguypink.gd" id="4_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://0glsmqww0vbg" path="res://Sprites/FlyGuy/FlyMain.png" id="5_vef74"]
+[ext_resource type="Texture2D" uid="uid://cwjmymahpgrg0" path="res://Sprites/UI/pixil-frame-0 (41).png" id="6_7sc4i"]
+[ext_resource type="Script" uid="uid://c874aq52gyh1f" path="res://joycon.gd" id="7_80cx4"]
 [ext_resource type="Texture2D" uid="uid://btnbga6yel15g" path="res://Sprites/UI/GeneralUI.png" id="7_hve3p"]
 [ext_resource type="FontFile" uid="uid://bsrqg8k2vcdiy" path="res://pentabit-sans.ttf" id="8_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://njmnvh2o1yyu" path="res://Sprites/spritesheet.png" id="10_mfdv2"]
 [ext_resource type="Script" uid="uid://ejw2h80ph7i" path="res://flyguyblue.gd" id="12_iotsf"]
+[ext_resource type="Script" uid="uid://ct2ce5cr1gi1p" path="res://flyguygreen.gd" id="13_lc2xo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vfwuq"]
 radius = 27.0
@@ -138,9 +141,6 @@ scale = Vector2(4.326119, 4.153617)
 [node name="Marker2D" parent="Oscar/AnimatedSprite2D" parent_id_path=PackedInt32Array(1827571012, 1001032267) index="0" unique_id=412289285]
 position = Vector2(9.871246, 2.5751069)
 
-[node name="CollisionShape2D" parent="Oscar" index="1" unique_id=375633655]
-visible = true
-
 [node name="Camera2D" type="Camera2D" parent="Oscar" unique_id=1585518271]
 
 [node name="GUI" type="Control" parent="Oscar/Camera2D" unique_id=1156663988]
@@ -180,6 +180,16 @@ theme_override_font_sizes/font_size = 8
 text = "Uh oh, it's Knight Oscar! Stay
 away from my pink stone!"
 uppercase = true
+
+[node name="joycon" type="TextureRect" parent="Oscar/Camera2D/GUI" unique_id=315002312]
+layout_mode = 0
+offset_left = -558.0
+offset_top = 186.0
+offset_right = -518.0
+offset_bottom = 226.0
+scale = Vector2(1.697913, 1.9338773)
+texture = ExtResource("6_7sc4i")
+script = ExtResource("7_80cx4")
 
 [node name="shield" type="Sprite2D" parent="Oscar" unique_id=1616227757]
 position = Vector2(-26, 5)
@@ -243,12 +253,40 @@ debug_color = Color(0.8755744, 0.34478006, 5.7756904e-07, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flyguyblue" unique_id=1230397129]
 scale = Vector2(2.3, 2.3)
 sprite_frames = SubResource("SpriteFrames_iotsf")
+
+[node name="flyguygreen" type="CharacterBody2D" parent="." unique_id=1477376124]
+position = Vector2(68, 666)
+scale = Vector2(1.6744429, 1.375726)
+script = ExtResource("13_lc2xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flyguygreen" unique_id=450359767]
+shape = SubResource("CapsuleShape2D_vfwuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="flyguygreen" unique_id=1826911612]
+z_index = 1
+position = Vector2(-7.166563, 10.176441)
+scale = Vector2(5.641437, 5.9908795)
+texture = SubResource("CompressedTexture2D_hve3p")
+region_enabled = true
+region_rect = Rect2(41.071857, 40.981953, 4.9959145, 3.989729)
+
+[node name="Area2D" type="Area2D" parent="flyguygreen" unique_id=1669784172]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flyguygreen/Area2D" unique_id=797732290]
+shape = SubResource("CircleShape2D_xrivr")
+debug_color = Color(0.8755744, 0.34478006, 5.7756904e-07, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="flyguygreen" unique_id=1537557788]
+scale = Vector2(2.3, 2.3)
+sprite_frames = SubResource("SpriteFrames_iotsf")
 animation = &"defeat"
 
 [connection signal="body_entered" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="flyguypink/Area2D" to="flyguypink" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="flyguyblue/Area2D" to="flyguyblue" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="flyguyblue/Area2D" to="flyguyblue" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="flyguygreen/Area2D" to="flyguygreen" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="flyguygreen/Area2D" to="flyguygreen" method="_on_area_2d_body_exited"]
 
 [editable path="world"]
 [editable path="Oscar"]

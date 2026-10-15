@@ -28,6 +28,8 @@ const PICK_CUTOFF: float = 0.5
 var timer_enabled: bool = false
 var turn_id: int = 0
 var skip_ai_pause: bool = false
+var reshuffle_rounds: bool = false
+var reshuffle_count: int = 0
 
 var card_deck: Array = [
 	"butterfly", "butterfly", "goldfish", "goldfish", "mockingbird", "mockingbird",
@@ -57,9 +59,8 @@ func _ready() -> void:
 		turnToken.scale.y = 3.3
 		turnToken.position.y = 372.0
 
-	# Timer exists only in level 2 — check the scene so level 1 never touches it.
-	var in_level_2: bool = get_tree().current_scene.name == "Level2"
-	timer_enabled = in_level_2 and turnTimer != null and timerBar != null
+	# Any level with a Timer node gets the turn timer — level 1 simply has none.
+	timer_enabled = turnTimer != null and timerBar != null
 	if timer_enabled:
 		turnTimer.wait_time = TURN_TIME
 		turnTimer.one_shot = true
@@ -67,6 +68,9 @@ func _ready() -> void:
 		timerBar.max_value = TURN_TIME
 		timerBar.value = 0
 		timerBar.show()
+
+	# Level 3 scrambles the board after every round (one turn each).
+	reshuffle_rounds = get_tree().current_scene.name == "Level3"
 
 	if card_grid:
 		card_grid.add_theme_constant_override("h_separation", 12)
@@ -136,17 +140,18 @@ func change_state(new_state: GameState) -> void:
 				oscarSpriteAnims.hide()
 				shield.hide()
 				sword.hide()
-				await get_tree().create_timer(5).timeout
+				await get_tree().create_timer(8).timeout
 				get_tree().reload_current_scene()
 			elif gamemaster.flyHealth <= 0:
 				flySpriteAnims.hide()
 				gameOverWinScreen.show()
-				# Level 2's key shines blue, level 1's shines gold.
 				if get_tree().current_scene.name == "Level2":
 					keyAnim.play("shineBlue")
-				else:
+				elif get_tree().current_scene.name == "Level1":
 					keyAnim.play("shine")
-				await get_tree().create_timer(5).timeout
+				elif get_tree().current_scene.name == "Level3":
+					keyAnim.play("shineGreen")
+				await get_tree().create_timer(8).timeout
 				gamemaster.gemCount += 1
 				get_tree().change_scene_to_file("res://game.tscn")
 
@@ -162,6 +167,7 @@ func _on_turn_timeout() -> void:
 	elif current_state == GameState.AI_TURN:
 		print("Time's up — turn passes to Oscar.")
 		_flip_back_hand()
+		await _reshuffle_board()
 		change_state(GameState.PLAYER_TURN)
 
 
@@ -171,6 +177,86 @@ func _flip_back_hand() -> void:
 			card.play_reversed(card.id)
 			card.face_down = true
 	current_hand.clear()
+
+
+func _reshuffle_board() -> void:
+	await get_tree().create_timer(1.5).timeout
+	# Level 3 only: after every round, scatter the unmatched cards to new
+	# cells and slide them there so the player watches the board scramble.
+	if not reshuffle_rounds:
+		return
+	var cards: Array = []
+	for child in card_grid.get_children():
+		if is_instance_valid(child) and not child.matched:
+			cards.append(child)
+	if cards.size() < 2:
+		return
+	# Remember where every card sits right now.
+	var old_spots: Dictionary = {}
+	for card in cards:
+		old_spots[card] = card.global_position
+	# Shuffle the grid order and let the container lay the new arrangement out.
+	cards.shuffle()
+	for i in range(cards.size()):
+		card_grid.move_child(cards[i], i)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	# Park each card back on its old spot, then slide it to its new one.
+	var slide: Tween = create_tween().set_parallel(true)
+	for card in cards:
+		var new_spot: Vector2 = card.global_position
+		card.global_position = old_spots[card]
+		slide.tween_property(card, "global_position", new_spot, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	await slide.finished
+	# Peek: flip every unmatched card face-up for one second, then flip back.
+	for card in cards:
+		if is_instance_valid(card):
+			card.play(card.id)
+			card.face_down = false
+	await get_tree().create_timer(1.15).timeout
+	for card in cards:
+		if is_instance_valid(card) and not card.matched:
+			card.flip_face_down()
+	# Don't hand the turn back until every card is face-down again.
+	var all_down := false
+	while not all_down:
+		await get_tree().process_frame
+		all_down = true
+		for card in cards:
+			if is_instance_valid(card) and not card.face_down:
+				all_down = false
+				break
+	# First reshuffle only: the two dialogue boxes play in sequence.
+# First reshuffle only: the two dialogue boxes play in sequence.
+	reshuffle_count += 1
+	if reshuffle_count == 1:
+		var box1 := get_node_or_null("../../ReshuffleTip")
+		if is_instance_valid(box1):
+			_show_box(box1)
+		await get_tree().create_timer(2.0).timeout
+		var box2 := get_node_or_null("../../Tutorial")
+		if is_instance_valid(box2):
+			_show_box(box2)
+		await get_tree().create_timer(3.0).timeout
+		if is_instance_valid(box1):
+			_hide_box(box1)
+		if is_instance_valid(box2):
+			_hide_box(box2)
+
+
+
+func _show_box(box: Node) -> void:
+	box.show()
+	var label := box.get_node_or_null("Label")
+	if is_instance_valid(label):
+		label.show()
+
+
+func _hide_box(box: Node) -> void:
+	var label := box.get_node_or_null("Label")
+	if is_instance_valid(label):
+		label.hide()
+	box.hide()
 
 
 func print_board() -> void:
@@ -356,4 +442,6 @@ func check_hand_match() -> void:
 	if who_just_played == GameState.PLAYER_TURN:
 		change_state(GameState.AI_TURN)
 	else:
+		# A full round (one turn each) just ended — level 3 scrambles the board.
+		await _reshuffle_board()
 		change_state(GameState.PLAYER_TURN)

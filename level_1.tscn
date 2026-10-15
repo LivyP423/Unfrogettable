@@ -11,13 +11,44 @@
 [ext_resource type="Texture2D" uid="uid://ckteoai1tdvpi" path="res://Sprites/sword.png" id="5_5rr72"]
 [ext_resource type="Script" uid="uid://dk1f65dxut1a4" path="res://battleOscar.gd" id="5_gyffv"]
 [ext_resource type="Texture2D" uid="uid://brim2qkblupqi" path="res://Sprites/realdie.png" id="6_lhbbi"]
+[ext_resource type="Script" uid="uid://cyqtvaykducs0" path="res://game_over_win.gd" id="7_00ld1"]
 [ext_resource type="Texture2D" uid="uid://b48cyatajwdq7" path="res://Sprites/pixil-frame-0 (10).png" id="8_1pe0h"]
 [ext_resource type="Texture2D" uid="uid://bu8bsodm40k7o" path="res://Sprites/empty.png" id="8_27bay"]
 [ext_resource type="Texture2D" uid="uid://cjwyu10q122tf" path="res://Sprites/moreKeys1.png" id="8_gjkv5"]
+[ext_resource type="Texture2D" uid="uid://hkhym7lmqcb3" path="res://Sprites/blueStone.png" id="8_lfy8a"]
+[ext_resource type="Texture2D" uid="uid://0hhj377nldj6" path="res://Sprites/greenStone.png" id="9_ethxx"]
 [ext_resource type="Texture2D" uid="uid://bi3i83ujibk3e" path="res://Sprites/human.png" id="9_sof0w"]
+[ext_resource type="Texture2D" uid="uid://dg7ghb6oso01f" path="res://Sprites/pinkStone.png" id="10_3o2xh"]
 [ext_resource type="Texture2D" uid="uid://b5t3a5mrvcjsx" path="res://Sprites/zombie.png" id="12_ggavl"]
 [ext_resource type="Script" uid="uid://dge4igmbwk46" path="res://battleFlyguy.gd" id="12_sof0w"]
 [ext_resource type="Texture2D" uid="uid://dwsvxlt47tk7" path="res://Sprites/turnToken.png" id="14_ggavl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_duihb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lfy8a")
+}],
+"loop": 1,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ethxx")
+}],
+"loop": 1,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_3o2xh")
+}],
+"loop": 1,
+"name": &"pink",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00ld1"]
 atlas = ExtResource("8_gjkv5")
@@ -27,7 +58,15 @@ region = Rect2(19, 0, 19, 29)
 atlas = ExtResource("8_gjkv5")
 region = Rect2(57, 0, 19, 29)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfy8a"]
+atlas = ExtResource("8_gjkv5")
+region = Rect2(0, 29, 19, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ethxx"]
+atlas = ExtResource("8_gjkv5")
+region = Rect2(57, 29, 19, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3o2xh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -39,6 +78,17 @@ animations = [{
 "loop": 1,
 "name": &"shine",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfy8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ethxx")
+}],
+"loop": 1,
+"name": &"shineBlue",
+"speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_ggavl"]
@@ -255,6 +305,7 @@ Princess Mochi.
 horizontal_alignment = 1
 
 [node name="GameOverWin" type="CanvasLayer" parent="Control" unique_id=1590637697]
+script = ExtResource("7_00ld1")
 
 [node name="TextureRect" type="TextureRect" parent="Control/GameOverWin" unique_id=938262681]
 offset_left = 186.00002
@@ -278,34 +329,33 @@ theme_override_font_sizes/font_size = 16
 text = "YOU WON!"
 
 [node name="Label2" type="Label" parent="Control/GameOverWin" unique_id=693632115]
-offset_left = 338.0
-offset_top = 268.00003
-offset_right = 802.0
-offset_bottom = 367.00003
-scale = Vector2(1.0280788, 1.9423298)
+offset_left = 296.0
+offset_top = 268.0
+offset_right = 760.0
+offset_bottom = 367.0
+scale = Vector2(1.2643206, 2.6125002)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_ubhxj")
 text = "The Fly Guy got knocked out!
-
-While he was passed out, Knight Oscar was able to grab
-the pink gemstone. After placing it in his key, Oscar
+While he was passed out, Knight Oscar 
+was able to grab the pink gemstone.
+ After placing it in his key, Oscar
 notices the key begin to weakly illuminate. 
 "
 horizontal_alignment = 1
 
-[node name="Gemstone" type="Sprite2D" parent="Control/GameOverWin" unique_id=1072592254]
+[node name="Gemstone" type="AnimatedSprite2D" parent="Control/GameOverWin" unique_id=1733987482]
 position = Vector2(578, 105.99999)
 scale = Vector2(23.996004, -24.76306)
-texture = ExtResource("8_1pe0h")
-region_enabled = true
-region_rect = Rect2(40.987804, 30.986658, 4.9959145, 3.989729)
+sprite_frames = SubResource("SpriteFrames_duihb")
+animation = &"green"
 
-[node name="key" type="AnimatedSprite2D" parent="Control/GameOverWin" unique_id=972988210]
-position = Vector2(573, 502.99997)
-rotation = 0.896373
-scale = Vector2(7.1442957, 6.945498)
-sprite_frames = SubResource("SpriteFrames_xrivr")
-animation = &"shine"
+[node name="key" type="AnimatedSprite2D" parent="Control/GameOverWin" unique_id=638881330]
+position = Vector2(574.00006, 535.00006)
+rotation = 1.177211
+scale = Vector2(4.9879656, 5.2200866)
+sprite_frames = SubResource("SpriteFrames_3o2xh")
+animation = &"shineBlue"
 
 [node name="Oscar" parent="." unique_id=1827571012 instance=ExtResource("3_j7kpp")]
 z_index = 2
